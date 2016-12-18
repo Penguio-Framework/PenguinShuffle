@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<fontMetrics file="a">
+  <character character="120">
+    <x>8</x>
+    <y>8</y>
+    <width>18</width>
+    <height>17</height>
+  </character>
+  <character character="32">
+    <x>34</x>
+    <y>8</y>
+    <width>12</width>
+    <height>17</height>
+  </character>
+</fontMetrics>

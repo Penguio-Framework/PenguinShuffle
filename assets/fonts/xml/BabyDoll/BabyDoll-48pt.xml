@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<fontMetrics file="a">
+  <character character="116">
+    <x>8</x>
+    <y>8</y>
+    <width>20</width>
+    <height>38</height>
+  </character>
+  <character character="105">
+    <x>36</x>
+    <y>8</y>
+    <width>8</width>
+    <height>38</height>
+  </character>
+  <character character="109">
+    <x>52</x>
+    <y>8</y>
+    <width>40</width>
+    <height>38</height>
+  </character>
+  <character character="101">
+    <x>100</x>
+    <y>8</y>
+    <width>22</width>
+    <height>38</height>
+  </character>
+  <character character="32">
+    <x>130</x>
+    <y>8</y>
+    <width>16</width>
+    <height>38</height>
+  </character>
+  <character character="108">
+    <x>154</x>
+    <y>8</y>
+    <width>10</width>
+    <height>38</height>
+  </character>
+  <character character="102">
+    <x>172</x>
+    <y>8</y>
+    <width>18</width>
+    <height>38</height>
+  </character>
+  <character character="111">
+    <x>198</x>
+    <y>8</y>
+    <width>22</width>
+    <height>38</height>
+  </character>
+  <character character="97">
+    <x>228</x>
+    <y>8</y>
+    <width>24</width>
+    <height>38</height>
+  </character>
+  <character character="118">
+    <x>260</x>
+    <y>8</y>
+    <width>23</width>
+    <height>38</height>
+  </character>
+  <character character="115">
+    <x>291</x>
+    <y>8</y>
+    <width>14</width>
+    <height>38</height>
+  </character>
+</fontMetrics>

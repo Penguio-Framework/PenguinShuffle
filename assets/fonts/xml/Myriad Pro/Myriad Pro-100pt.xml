@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<fontMetrics file="a">
+  <character character="48">
+    <x>8</x>
+    <y>8</y>
+    <width>45</width>
+    <height>68</height>
+  </character>
+  <character character="49">
+    <x>61</x>
+    <y>8</y>
+    <width>23</width>
+    <height>68</height>
+  </character>
+  <character character="50">
+    <x>92</x>
+    <y>8</y>
+    <width>42</width>
+    <height>68</height>
+  </character>
+  <character character="51">
+    <x>142</x>
+    <y>8</y>
+    <width>41</width>
+    <height>68</height>
+  </character>
+  <character character="52">
+    <x>191</x>
+    <y>8</y>
+    <width>49</width>
+    <height>68</height>
+  </character>
+  <character character="53">
+    <x>248</x>
+    <y>8</y>
+    <width>41</width>
+    <height>68</height>
+  </character>
+  <character character="54">
+    <x>297</x>
+    <y>8</y>
+    <width>45</width>
+    <height>68</height>
+  </character>
+  <character character="55">
+    <x>350</x>
+    <y>8</y>
+    <width>42</width>
+    <height>68</height>
+  </character>
+  <character character="56">
+    <x>400</x>
+    <y>8</y>
+    <width>45</width>
+    <height>68</height>
+  </character>
+  <character character="57">
+    <x>453</x>
+    <y>8</y>
+    <width>44</width>
+    <height>68</height>
+  </character>
+  <character character="32">
+    <x>505</x>
+    <y>8</y>
+    <width>33</width>
+    <height>68</height>
+  </character>
+</fontMetrics>

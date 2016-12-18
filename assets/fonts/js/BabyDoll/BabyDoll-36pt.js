@@ -1,0 +1,1 @@
+{"file":"a","character":[{"character":"120","x":"8","y":"8","width":"18","height":"17"},{"character":"32","x":"34","y":"8","width":"12","height":"17"}]}
