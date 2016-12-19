@@ -41,16 +41,41 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Compile Include="AssetCollection.cs" />
+    <Compile Include="BoardArea\Board.cs" />
+    <Compile Include="BoardArea\BoardConstants.cs" />
+    <Compile Include="BoardArea\BoardUtils.cs" />
+    <Compile Include="BoardArea\ChosenCharacter.cs" />
+    <Compile Include="BoardArea\CollisionOptions.cs" />
+    <Compile Include="BoardArea\Direction.cs" />
+    <Compile Include="BoardArea\GameSelectionState.cs" />
+    <Compile Include="BoardArea\IBoardBuilder.cs" />
+    <Compile Include="BoardArea\Layouts\BoardCardSelectionAreaLayout.cs" />
+    <Compile Include="BoardArea\Layouts\BoardSelectionAreaLayout.cs" />
+    <Compile Include="BoardArea\Layouts\BoardSlidingAreaLayout.cs" />
+    <Compile Include="BoardArea\Layouts\BoardViewingAreaLayout.cs" />
+    <Compile Include="BoardArea\Movement.cs" />
+    <Compile Include="BoardArea\Player.cs" />
+    <Compile Include="BoardArea\PlayerPosition.cs" />
+    <Compile Include="BoardArea\RicochetBoardBuilder.cs" />
+    <Compile Include="BoardArea\SquarePieces\BorderWallPiece.cs" />
+    <Compile Include="BoardArea\SquarePieces\GoalPiece.cs" />
+    <Compile Include="BoardArea\SquarePieces\ISquarePiece.cs" />
+    <Compile Include="BoardArea\SquarePieces\PlayerSquarePiece.cs" />
+    <Compile Include="BoardArea\SquarePieces\SolidWallPiece.cs" />
+    <Compile Include="BoardArea\SquarePieces\WallPiece.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameService.cs" />
-    <Compile Include="PuzzleArea\PuzzleAreaLayout.cs" />
-    <Compile Include="ScreenTransitioner.cs" />
+    <Compile Include="LandingArea\LandingAreaLayout.cs" />
+    <Compile Include="SettingsArea\GameMode.cs" />
+    <Compile Include="SettingsArea\SettingsAreaLayout.cs" />
+    <Compile Include="SubLayoutViews\AnimatedCharacterSubLayout.cs" />
+    <Compile Include="SubLayoutViews\CloudSublayout.cs" />
     <Compile Include="SubLayoutViews\SoundSubLayout.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="LandingArea\" />
+    <Compile Include="Utils\ClientSwitcher.cs" />
+    <Compile Include="Utils\NumberUtils.cs" />
+    <Compile Include="Utils\RandomUtil.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
