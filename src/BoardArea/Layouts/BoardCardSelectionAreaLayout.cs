@@ -207,11 +207,7 @@ namespace PenguinShuffle.BoardArea.Layouts
                 int topRow = goals.Length / 2;
                 int bottomRow = goals.Length / 2 + goals.Length % 2;
                 int posx, posy;
-#if WEB
-                var index = goals.IndexOf(gc);
-#else
                 int index = Array.IndexOf(goals, gc);
-#endif
 
                 int yAnimateOffset = 0;
                 if (index < topRow)

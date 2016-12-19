@@ -265,12 +265,7 @@ namespace PenguinShuffle.BoardArea.Layouts
                                 State.CurrentCharacter = currentCharacter;
                                 GameService.ClassicGameState.GameState = GameSelectionState.ChooseNumber;
                                 State.CurrentCharacter.Selected = true;
-#if WEB
-                                State.TimePausedStart = DateTime.Now.GetMilliseconds();
-#else
                                 State.TimePausedStart = DateTime.Now.Ticks;
-
-#endif
                                 if (State.CurrentTick != null) State.CurrentTick.Stop();
                             }
                             break;
@@ -347,20 +342,11 @@ namespace PenguinShuffle.BoardArea.Layouts
                         Game.Client.PlaySoundEffect(SoundEffects.Click);
                         if (GameService.ClassicGameState.TimeStarted == 0)
                         {
-#if WEB
-                            GameService.ClassicGameState.TimeStarted = DateTime.Now.Millisecond;
-#else
                             GameService.ClassicGameState.TimeStarted = DateTime.Now.Ticks;
-#endif
                         }
                         else
                         {
-#if WEB
-                            State.TimePaused += DateTime.Now.GetMilliseconds() - State.TimePausedStart;
-#else
                             State.TimePaused += DateTime.Now.Ticks - State.TimePausedStart;
-
-#endif
                         }
 
                         GameService.ClassicGameState.GameState = GameSelectionState.TimerStarted;
@@ -560,15 +546,8 @@ namespace PenguinShuffle.BoardArea.Layouts
 
         private long GetTimeLeft()
         {
-#if WEB
-            long ticks = (DateTime.Now.GetMilliseconds() - GameService.ClassicGameState.TimeStarted) - State.TimePaused;
-            long seconds = ticks / 1000;
-#else
             long ticks = (DateTime.Now.Ticks - GameService.ClassicGameState.TimeStarted) - State.TimePaused;
             long seconds = ticks / 10000000;
-#endif
-
-
             long timeLeft = State.TotalNumberOfSeconds - seconds;
             return timeLeft;
         }

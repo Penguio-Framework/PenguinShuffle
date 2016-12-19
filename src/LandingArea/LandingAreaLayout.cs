@@ -314,11 +314,7 @@ namespace PenguinShuffle.LandingArea
 
         public void Tick(TimeSpan elapsedGameTime)
         {
-#if WEB
-            if (DateTime.Now - State.StartHop > State.NextHop.Ticks)
-#else 
             if (DateTime.Now - State.StartHop > State.NextHop)
-#endif
             {
                 setNextHop();
                 RandomPenguinHop.Restart();
