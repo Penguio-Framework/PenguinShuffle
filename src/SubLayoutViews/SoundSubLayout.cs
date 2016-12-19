@@ -2,7 +2,7 @@
 using Engine;
 using Engine.Interfaces;
 
-namespace DemolitionRobots.SubLayoutViews
+namespace PenguinShuffle.SubLayoutViews
 {
     public class SoundSubLayout : ISubLayoutView
     {

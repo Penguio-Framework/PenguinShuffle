@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using DemolitionRobots.PuzzleArea;
-using Engine;
+﻿using Engine;
 using Engine.Interfaces;
+using PenguinShuffle.PuzzleArea;
 
-namespace DemolitionRobots
+namespace PenguinShuffle
 {
     public class Game : IGame
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Engine.Interfaces;
 
-namespace DemolitionRobots
+namespace PenguinShuffle
 {
     public class AssetCollection
     {

@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using DemolitionRobots.SubLayoutViews;
-using Engine;
 using Engine.Interfaces;
 
-namespace DemolitionRobots
+namespace PenguinShuffle
 {
     public class GameService
     {

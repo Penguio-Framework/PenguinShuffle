@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Engine;
 using Engine.Interfaces;
 
-namespace DemolitionRobots.PuzzleArea
+namespace PenguinShuffle.PuzzleArea
 {
     public class PuzzleAreaLayout : ILayoutView
     {
@@ -89,12 +89,8 @@ namespace DemolitionRobots.PuzzleArea
             }
             
             mainLayer.Restore();
-//            mainLayer.DrawImage(Images.Layouts.Cloud[Images.Layouts.CloudOptions._1], 500, 500);
             mainLayer.DrawImage(Images.Layouts.Foob, 200, 500);
             mainLayer.DrawImage(Images.Layouts.Logo, 0, 0);
-//            mainLayer.DrawImage(Images.Layouts.ModeButton, 500, 800);
-
-//            mainLayer.DrawString(Fonts.BabyDoll.BabyDollPt[Fonts.BabyDoll.BabyDollPtOptions._120], "Hello", 500, 800);
 
             mainLayer.End();
 
