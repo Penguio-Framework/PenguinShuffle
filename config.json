@@ -1,1 +1,8 @@
-{"projectName": "PenguinShuffle"}
+{
+  "projectName": "PenguinShuffle",
+  "ios": {
+    "serverAddress": "",
+    "serverUser": "",
+    "serverPassword": ""
+  }
+}

@@ -147,7 +147,7 @@ namespace PenguinShuffle
 
         public void LoadAssets(IRenderer renderer)
         {
-//            Client.SetCustomLetterbox(AssetManager.CreateImage(Images.Layouts.Letterbox, "layouts/gray-bg"));
+            Client.SetCustomLetterbox(AssetManager.CreateImage(Images.Layouts.Letterbox, "layouts/gray-bg"));
 
 
             AssetManager.CreateImage(Images.Layouts.PenguinLogo, "layouts/penguin-logo");
