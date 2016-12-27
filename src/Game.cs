@@ -13,13 +13,11 @@ namespace PenguinShuffle
 {
     public class Game : IGame
     {
-        private IRenderer _renderer;
         public IScreen boardCardSelectionScreen;
         public IScreen boardScreen;
         public IScreen boardSelectionScreen;
         public IScreen boardViewingScreen;
         public IScreen choosePuzzleScreen;
-        public IScreen createBoardScreen;
         public IScreen landingScreen;
         public IScreen puzzleBoardScreen;
         public IScreen settingsScreen;
@@ -37,38 +35,16 @@ namespace PenguinShuffle
         public ILayout CreateBoardAreaLayout { get; set; }
 
         public IScreenManager ScreenManager { get; set; }
-        public ISocket Socket { get; set; }
         public IClient Client { get; set; }
         public AssetManager AssetManager { get; set; }
 
-        public void OnProductPurchased(string sku)
-        {
-           /* if (GameService.Products.First(a => a.Identifier == sku) != null)
-            {
-                GameService.HasMultiplayer = true;
-            }*/
-        }
+
 
         public void InitScreens(IRenderer renderer, IScreenManager screenManager)
         {
             ScreenManager = screenManager;
-            _renderer = renderer;
 
             GameService = new GameService(AssetManager);
-
-/*
-            GameService.Products = Client.ClientSettings.GetAvailableProducts(new List<string>()
-            {
-                "product.multiplayerEnabled"
-            });
-            if (GameService.Products.Count > 0)
-            {
-                GameService.HasMultiplayer = Client.ClientSettings.IsProductPurchased(GameService.Products[0]);
-            }
-            else
-            {
-                GameService.HasMultiplayer = false;
-            }*/
 
             var screenTransitioner = new ScreenTransitioner(this);
             int width = 1536;
@@ -292,13 +268,8 @@ namespace PenguinShuffle
 
         public void ChangeToSettingsScreen()
         {
-#if createBoard
-            _game.GameService.GameMode=GameMode.Create;
-            
-            _game.ScreenManager.ChangeScreen(_game.createBoardScreen);
-#else
             game.ScreenManager.ChangeScreen(game.settingsScreen);
-#endif
+
         }
 
         public void ChangeToBoardCardSelectionScreen()
