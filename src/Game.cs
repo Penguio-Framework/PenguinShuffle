@@ -26,63 +26,21 @@ namespace PenguinShuffle
 
 
 
-        public override void InitScreens(IRenderer renderer)
+        public override void InitScreens()
         {
 
             GameService = new GameService();
 
             var screenTransitioner = new ScreenTransitioner(this);
-            int width = 1536;
-            int height = 2048;
-
-            landingScreen = ScreenManager.CreateScreen();
-            landingScreen
-                .CreateLayout(width, height)
-                .MakeActive()
-                .SetScreenOrientation(ScreenOrientation.Vertical)
-                .SetLayout(new LandingAreaLayout(this, GameService, renderer, screenTransitioner));
+            ScreenManager.SetDefaultScreenSize(1536, 2048);
 
 
-            settingsScreen = ScreenManager.CreateScreen();
-            settingsScreen
-                .CreateLayout(width, height)
-                .MakeActive()
-                .SetScreenOrientation(ScreenOrientation.Vertical)
-                .SetLayout(new SettingsAreaLayout(this, GameService, renderer, screenTransitioner));
-
-            boardSelectionScreen = ScreenManager.CreateScreen();
-            boardSelectionScreen
-                .CreateLayout(width, height)
-                .MakeActive()
-                .SetScreenOrientation(ScreenOrientation.Vertical)
-                .SetLayout(new BoardSelectionAreaLayout(this, GameService, renderer, screenTransitioner));
-
-
-
-            boardCardSelectionScreen = ScreenManager.CreateScreen();
-            boardCardSelectionScreen
-                .CreateLayout(width, height)
-                .MakeActive()
-                .SetScreenOrientation(ScreenOrientation.Vertical)
-                .SetLayout(new BoardCardSelectionAreaLayout(this, GameService, renderer, screenTransitioner));
-
-
-
-            boardViewingScreen = ScreenManager.CreateScreen();
-            boardViewingScreen
-                .CreateLayout(width, height)
-                .MakeActive()
-                .SetScreenOrientation(ScreenOrientation.Vertical)
-                .SetLayout(new BoardViewingAreaLayout(this, GameService, renderer, screenTransitioner));
-
-
-
-            boardScreen = ScreenManager.CreateScreen();
-            boardScreen
-                .CreateLayout(width, height)
-                .MakeActive()
-                .SetScreenOrientation(ScreenOrientation.Vertical)
-                .SetLayout(new BoardSlidingAreaLayout(this, GameService, renderer, screenTransitioner));
+            landingScreen = ScreenManager.CreateDefaultScreenLayout(new LandingAreaLayout(GameService,  screenTransitioner));
+            settingsScreen = ScreenManager.CreateDefaultScreenLayout(new SettingsAreaLayout(GameService,  screenTransitioner));
+            boardSelectionScreen = ScreenManager.CreateDefaultScreenLayout(new BoardSelectionAreaLayout( GameService,  screenTransitioner));
+            boardCardSelectionScreen = ScreenManager.CreateDefaultScreenLayout(new BoardCardSelectionAreaLayout( GameService,  screenTransitioner));
+            boardViewingScreen = ScreenManager.CreateDefaultScreenLayout(new BoardViewingAreaLayout( GameService,  screenTransitioner));
+            boardScreen = ScreenManager.CreateDefaultScreenLayout(new BoardSlidingAreaLayout( GameService,  screenTransitioner));
 
             ScreenManager.ChangeScreen(landingScreen);
         }
@@ -126,9 +84,9 @@ namespace PenguinShuffle
         }
 
 
-        public override void LoadAssets(IRenderer renderer)
+        public override void LoadAssets()
         {
-            Assets.LoadAssets(renderer, AssetManager);
+            Assets.LoadAssets(Renderer, AssetManager);
             Client.SetCustomLetterbox(Assets.Images.Layouts.GrayBg);
         }
     }

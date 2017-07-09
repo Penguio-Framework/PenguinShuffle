@@ -10,28 +10,16 @@ namespace PenguinShuffle.BoardArea.Layouts
 {
     public class BoardSelectionAreaLayout : BaseLayoutView
     {
-        public BoardSelectionAreaLayout(Game game, GameService gameService, IRenderer renderer, ScreenTransitioner screenTransitioner)
+        public BoardSelectionAreaLayout(GameService gameService,  ScreenTransitioner screenTransitioner)
         {
-            Game = game;
-            Renderer = renderer;
             GameService = gameService;
-            ScreenTransitioner = screenTransitioner;
-
-
-            CharacterAnimations = new Dictionary<int, AnimatedCharacterSubLayout>();
-            for (int i = 1; i <= 6; i++)
-            {
-                CharacterAnimations.Add(i, new AnimatedCharacterSubLayout( Game, i));
-            }
-
+            ScreenTransitioner = screenTransitioner; 
         }
 
         public Dictionary<int, AnimatedCharacterSubLayout> CharacterAnimations;
 
 
-
-        public Game Game { get; set; }
-        public IRenderer Renderer { get; set; }
+        
         public ILayer MainLayer { get; set; }
         public GameService GameService { get; set; }
         public ScreenTransitioner ScreenTransitioner { get; set; }
@@ -47,6 +35,11 @@ namespace PenguinShuffle.BoardArea.Layouts
 
         public override void InitLayoutView()
         {
+            CharacterAnimations = new Dictionary<int, AnimatedCharacterSubLayout>();
+            for (int i = 1; i <= 6; i++)
+            {
+                CharacterAnimations.Add(i, new AnimatedCharacterSubLayout(Client, i));
+            }
 
             MainLayer = Renderer.CreateLayer(Layout);
             Renderer.AddLayer(MainLayer);
@@ -99,9 +92,9 @@ namespace PenguinShuffle.BoardArea.Layouts
             }
 
 
-            if (!Game.Client.UserPreferences.GetValueOrDefault("HasSeenTutorial", false))
+            if (!Client.UserPreferences.GetValueOrDefault("HasSeenTutorial", false))
             {
-                Game.Client.UserPreferences.AddOrUpdateValue("HasSeenTutorial", true);
+                Client.UserPreferences.AddOrUpdateValue("HasSeenTutorial", true);
                 State.ShowingTutorial = 1;
             }
         }
@@ -228,7 +221,7 @@ namespace PenguinShuffle.BoardArea.Layouts
                         if (State.ShowingTutorial == 1 || State.ShowingTutorial == 2)
                         {
                             State.ShowingTutorial++;
-                            Game.Client.PlaySoundEffect(Assets.Sounds.Click);
+                            Client.PlaySoundEffect(Assets.Sounds.Click);
 
                             return false;
                         }
@@ -256,7 +249,7 @@ namespace PenguinShuffle.BoardArea.Layouts
                     var currentCharacter = ((Character)touchbox.State);
                     if (currentCharacter.Playing)
                     {
-                        Game.Client.PlaySoundEffect(Assets.Sounds.Click);
+                        Client.PlaySoundEffect(Assets.Sounds.Click);
                         State.CurrentCharacter = null;
                         GameService.ClassicGameState.GameState = GameSelectionState.PlayerChoose;
                         return false;
@@ -265,14 +258,14 @@ namespace PenguinShuffle.BoardArea.Layouts
                     {
                         case GameSelectionState.PlayerChoose:
 
-                            Game.Client.PlaySoundEffect(Assets.Sounds.Click);
+                            Client.PlaySoundEffect(Assets.Sounds.Click);
                             State.CurrentCharacter = currentCharacter;
                             State.CurrentCharacter.X = -1;
                             GameService.ClassicGameState.GameState = GameSelectionState.PlayerPlace;
                             State.CurrentCharacter.Selected = true;
                             break;
                         case GameSelectionState.PlayerPlace:
-                            Game.Client.PlaySoundEffect(Assets.Sounds.Click);
+                            Client.PlaySoundEffect(Assets.Sounds.Click);
 
                             State.CurrentCharacter.Selected = false;
                             if (State.CurrentCharacter == touchbox.State)
@@ -319,7 +312,7 @@ namespace PenguinShuffle.BoardArea.Layouts
                                 if (State.CurrentCharacter.X == -1) return false;
                                 if (GameService.ClassicGameState.Board.getItemsOnBoard(null, State.CurrentCharacter.X, State.CurrentCharacter.Y).Any(a => a is SolidWallPiece || a is GoalPiece || a is PlayerPiece))
                                     return false;
-                                Game.Client.PlaySoundEffect(Assets.Sounds.Click);
+                                Client.PlaySoundEffect(Assets.Sounds.Click);
 
                                 State.CurrentCharacter.Selected = false;
 

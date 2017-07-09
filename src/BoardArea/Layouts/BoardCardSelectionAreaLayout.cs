@@ -8,18 +8,14 @@ namespace PenguinShuffle.BoardArea.Layouts
 {
     public class BoardCardSelectionAreaLayout : BaseLayoutView
     {
-        public BoardCardSelectionAreaLayout(Game game, GameService gameService, IRenderer renderer, ScreenTransitioner screenTransitioner)
+        public BoardCardSelectionAreaLayout(GameService gameService,  ScreenTransitioner screenTransitioner)
         {
-            Game = game;
-            Renderer = renderer;
             GameService = gameService;
             ScreenTransitioner = screenTransitioner;
         
 
         }
 
-        public Game Game { get; set; }
-        public IRenderer Renderer { get; set; }
         public ILayer MainLayer { get; set; }
         public BoardCardSelectionAreaLayoutState State { get; set; }
 
@@ -141,12 +137,12 @@ namespace PenguinShuffle.BoardArea.Layouts
             {
                 if (GameService.ClassicGameState.UnusedGoals.Length == 0)
                 {
-                    var gamesCompleted = Game.Client.UserPreferences.GetValueOrDefault("GamesCompleted", 0) + 1;
+                    var gamesCompleted = Client.UserPreferences.GetValueOrDefault("GamesCompleted", 0) + 1;
                     if (gamesCompleted == 3)
                     {
-                        Game.Client.UserPreferences.AddOrUpdateValue("GamesCompleted", gamesCompleted);
-                        Game.Client.ClientSettings.RateApp();
-                        Game.Client.PlaySoundEffect(Assets.Sounds.Click);
+                        Client.UserPreferences.AddOrUpdateValue("GamesCompleted", gamesCompleted);
+                        Client.ClientSettings.RateApp();
+                        Client.PlaySoundEffect(Assets.Sounds.Click);
                         ScreenTransitioner.ChangeToLanding();
                     }
                     return false;
@@ -193,7 +189,7 @@ namespace PenguinShuffle.BoardArea.Layouts
             {
                 if (State.CardAnimationMotion != null) return false;
 
-                Game.Client.PlaySoundEffect(Assets.Sounds.Click);
+                Client.PlaySoundEffect(Assets.Sounds.Click);
                 var gc = (Goal)touchbox.State;
                 IImage goalImage = GoalPiece.GetGoalImage(gc);
 

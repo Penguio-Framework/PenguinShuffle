@@ -12,24 +12,15 @@ namespace PenguinShuffle.BoardArea.Layouts
         private readonly Color buttonBlue = new Color(37, 170, 225);
         private readonly Color white = new Color(255, 255, 255);
 
-        public BoardViewingAreaLayout(Game game, GameService gameService, IRenderer renderer, ScreenTransitioner screenTransitioner)
+        public BoardViewingAreaLayout( GameService gameService,  ScreenTransitioner screenTransitioner)
         {
-            Game = game;
-            Renderer = renderer;
             GameService = gameService;
             ScreenTransitioner = screenTransitioner;
 
-            CharacterAnimations = new Dictionary<int, AnimatedCharacterSubLayout>();
-            for (int i = 1; i <= 6; i++)
-            {
-                CharacterAnimations.Add(i, new AnimatedCharacterSubLayout(Game, i));
-            }
         }
 
         public Dictionary<int, AnimatedCharacterSubLayout> CharacterAnimations;
 
-        public Game Game { get; set; }
-        public IRenderer Renderer { get; set; }
         public ILayer MainLayer { get; set; }
         public BoardViewingAreaLayoutStatePositions Positions { get; set; }
         public BoardViewingAreaLayoutState State { get; set; }
@@ -44,6 +35,11 @@ namespace PenguinShuffle.BoardArea.Layouts
 
         public override void InitLayoutView()
         {
+            CharacterAnimations = new Dictionary<int, AnimatedCharacterSubLayout>();
+            for (int i = 1; i <= 6; i++)
+            {
+                CharacterAnimations.Add(i, new AnimatedCharacterSubLayout(Client, i));
+            }
             MainLayer = Renderer.CreateLayer(Layout);
             Renderer.AddLayer(MainLayer);
             Init();
@@ -112,7 +108,7 @@ namespace PenguinShuffle.BoardArea.Layouts
                 switch (eventtype)
                 {
                     case TouchType.TouchDown:
-                        Game.Client.PlaySoundEffect(Assets.Sounds.Click);
+                        Client.PlaySoundEffect(Assets.Sounds.Click);
                         ScreenTransitioner.ChangeToLanding();
                         break;
                 }
@@ -128,11 +124,11 @@ namespace PenguinShuffle.BoardArea.Layouts
                 switch (eventtype)
                 {
                     case TouchType.TouchDown:
-                        Game.Client.PlaySoundEffect(Assets.Sounds.Click);
+                        Client.PlaySoundEffect(Assets.Sounds.Click);
                         State.BackDialogVisible = false;
                         if (GameService.ClassicGameState.GameState == GameSelectionState.TimerStarted)
                         {
-                            State.CurrentTick = Game.Client.PlaySoundEffect(Assets.Sounds.TimeTick, true);
+                            State.CurrentTick = Client.PlaySoundEffect(Assets.Sounds.TimeTick, true);
                         }
                         break;
                 }
@@ -148,7 +144,7 @@ namespace PenguinShuffle.BoardArea.Layouts
             {
                 if (State.CurrentTick != null) State.CurrentTick.Stop();
 
-                Game.Client.PlaySoundEffect(Assets.Sounds.Click);
+                Client.PlaySoundEffect(Assets.Sounds.Click);
                 State.BackDialogVisible = true;
             }
             return false;
@@ -219,7 +215,7 @@ namespace PenguinShuffle.BoardArea.Layouts
                 case TouchType.TouchDown:
                     if (State.BackDialogVisible)
                     {
-                        Game.Client.PlaySoundEffect(Assets.Sounds.Click);
+                        Client.PlaySoundEffect(Assets.Sounds.Click);
                         State.BackDialogVisible = false;
                         return true;
                     }
@@ -239,7 +235,7 @@ namespace PenguinShuffle.BoardArea.Layouts
             {
                 case TouchType.TouchUp:
                     if (!collide) return false;
-                    Game.Client.PlaySoundEffect(Assets.Sounds.Click);
+                    Client.PlaySoundEffect(Assets.Sounds.Click);
 
                     if (closeNumberSelect())
                     {
@@ -284,7 +280,7 @@ namespace PenguinShuffle.BoardArea.Layouts
                 else
                 {
                     GameService.ClassicGameState.GameState = GameSelectionState.TimerStarted;
-                    State.CurrentTick = Game.Client.PlaySoundEffect(Assets.Sounds.TimeTick, true);
+                    State.CurrentTick = Client.PlaySoundEffect(Assets.Sounds.TimeTick, true);
                 }
                 return true;
             }
@@ -304,7 +300,7 @@ namespace PenguinShuffle.BoardArea.Layouts
                         State.NSDragMouseDownPosition = null;
                         break;
                     case TouchType.TouchDown:
-                        Game.Client.PlaySoundEffect(Assets.Sounds.Click);
+                        Client.PlaySoundEffect(Assets.Sounds.Click);
                         State.SwipeDistance = 0;
                         State.NSDragMouseDownPosition = new Point(x, y);
                         State.NSDragMouseDownStartingNumber = State.CurrentNumber;
@@ -331,7 +327,7 @@ namespace PenguinShuffle.BoardArea.Layouts
                 switch (eventtype)
                 {
                     case TouchType.TouchDown:
-                        Game.Client.PlaySoundEffect(Assets.Sounds.Click);
+                        Client.PlaySoundEffect(Assets.Sounds.Click);
                         if (GameService.ClassicGameState.TimeStarted == 0)
                         {
                             GameService.ClassicGameState.TimeStarted = DateTime.Now.Ticks;
@@ -342,7 +338,7 @@ namespace PenguinShuffle.BoardArea.Layouts
                         }
 
                         GameService.ClassicGameState.GameState = GameSelectionState.TimerStarted;
-                        State.CurrentTick = Game.Client.PlaySoundEffect(Assets.Sounds.TimeTick, true);
+                        State.CurrentTick = Client.PlaySoundEffect(Assets.Sounds.TimeTick, true);
                         State.TotalChosens++;
                         State.CurrentCharacter.Selected = false;
                         foreach (ChosenNumber chosenNumber in GameService.ClassicGameState.ChosenNumbers)
@@ -552,8 +548,8 @@ namespace PenguinShuffle.BoardArea.Layouts
                     if (GetTimeLeft() == 0)
                     {
                         if (State.CurrentTick != null) State.CurrentTick.Stop();
-                        ISoundEffect sfx = Game.Client.PlaySoundEffect(Assets.Sounds.TimeTick);
-                        Game.Client.Timeout(() =>
+                        ISoundEffect sfx = Client.PlaySoundEffect(Assets.Sounds.TimeTick);
+                        Client.Timeout(() =>
                         {
                             sfx.Stop();
                             ScreenTransitioner.ChangeToBoardScreen();

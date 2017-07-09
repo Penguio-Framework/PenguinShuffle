@@ -6,12 +6,12 @@ namespace PenguinShuffle.SubLayoutViews
 {
     public class SoundSubLayout : ISubLayoutView
     {
-        private readonly Game game;
+        private readonly BaseClient client;
         public Point SoundToggleButtonPosition;
 
-        public SoundSubLayout( Game game)
+        public SoundSubLayout(BaseClient client )
         {
-            this.game = game; 
+            this.client = client;
         }
 
         
@@ -34,7 +34,7 @@ namespace PenguinShuffle.SubLayoutViews
         public void Render(ILayer mainLayer)
         {
             mainLayer.Save();
-            mainLayer.DrawImage(game.Client.SoundEnabled ? Assets.Images.Layouts.SoundOnButton : Assets.Images.Layouts.SoundOffButton, SoundToggleButtonPosition, true);
+            mainLayer.DrawImage(client.SoundEnabled ? Assets.Images.Layouts.SoundOnButton : Assets.Images.Layouts.SoundOffButton, SoundToggleButtonPosition, true);
 
             mainLayer.Restore();
         }
@@ -47,8 +47,8 @@ namespace PenguinShuffle.SubLayoutViews
         {
             if (eventtype == TouchType.TouchDown)
             {
-                game.Client.SoundEnabled = !game.Client.SoundEnabled;
-                game.Client.PlaySoundEffect(Assets.Sounds.Click);
+                client.SoundEnabled = !client.SoundEnabled;
+                client.PlaySoundEffect(Assets.Sounds.Click);
                 return false;
             }
             return true;

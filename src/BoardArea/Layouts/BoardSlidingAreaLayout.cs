@@ -11,28 +11,20 @@ namespace PenguinShuffle.BoardArea.Layouts
     {
         private static readonly int[] swipeOffsetPositions = { 0, 1, -1, 2, -2 };
 
-        public BoardSlidingAreaLayout(Game game, GameService gameService, IRenderer renderer, ScreenTransitioner screenTransitioner)
+        public BoardSlidingAreaLayout(GameService gameService, ScreenTransitioner screenTransitioner)
         {
-            Game = game;
-            Renderer = renderer;
             GameService = gameService;
             ScreenTransitioner = screenTransitioner;
 
-            CharacterAnimations = new Dictionary<int, AnimatedCharacterSubLayout>();
-            for (int i = 1; i <= 6; i++)
-            {
-                CharacterAnimations.Add(i, new AnimatedCharacterSubLayout( Game, i));
-            }
+
 
         }
 
         public Dictionary<int, AnimatedCharacterSubLayout> CharacterAnimations;
 
-        public Game Game { get; set; }
-        public IRenderer Renderer { get; set; }
         public ILayer MainLayer { get; set; }
         public BoardAreaLayoutState State { get; set; }
-        
+
         public GameService GameService { get; set; }
         public ScreenTransitioner ScreenTransitioner { get; set; }
         public BoardAreaLayoutStatePositions Positions { get; set; }
@@ -43,7 +35,11 @@ namespace PenguinShuffle.BoardArea.Layouts
 
         public override void InitLayoutView()
         {
-
+            CharacterAnimations = new Dictionary<int, AnimatedCharacterSubLayout>();
+            for (int i = 1; i <= 6; i++)
+            {
+                CharacterAnimations.Add(i, new AnimatedCharacterSubLayout(Client, i));
+            }
             State = new BoardAreaLayoutState(Layout);
             Positions = new BoardAreaLayoutStatePositions(Layout);
 
@@ -138,7 +134,7 @@ namespace PenguinShuffle.BoardArea.Layouts
             {
                 if (State.Congrats && State.CardAnimationMotion.Completed)
                 {
-                    Game.Client.PlaySoundEffect(Assets.Sounds.Click);
+                    Client.PlaySoundEffect(Assets.Sounds.Click);
                     GameService.ClassicGameState.CharacterWon(State.CurrentChosenNumber.Character);
                     ScreenTransitioner.ChangeToBoardCardSelectionScreen();
                     return false;
@@ -264,7 +260,7 @@ namespace PenguinShuffle.BoardArea.Layouts
             GameService.ClassicGameState.Board.ProcessMovement(new Movement(selectedPlayer, moveDirection));
             if (GameService.ClassicGameState.Board.MoveToPosition != null)
             {
-                Game.Client.PlaySoundEffect(Assets.Sounds.Slide);
+                Client.PlaySoundEffect(Assets.Sounds.Slide);
                 Goal currentGoal = GameService.ClassicGameState.CurrentGoal;
                 var goal = (GoalPiece)GameService.ClassicGameState.Board.getItemsOnBoard(null, GameService.ClassicGameState.Board.MoveToPosition.X, GameService.ClassicGameState.Board.MoveToPosition.Y).First(a => a.Type == SquareTypes.Goal);
 
@@ -308,7 +304,7 @@ namespace PenguinShuffle.BoardArea.Layouts
             if (GameService.ClassicGameState.Board.MoveToPosition != null) return false;
             if (eventtype == TouchType.TouchDown)
             {
-                Game.Client.PlaySoundEffect(Assets.Sounds.Click);
+                Client.PlaySoundEffect(Assets.Sounds.Click);
                 for (int i = State.Moves.Count - 1; i >= 0; i--)
                 {
                     PlayerPosition undo = State.Moves[i];
@@ -341,7 +337,7 @@ namespace PenguinShuffle.BoardArea.Layouts
             if (GameService.ClassicGameState.Board.MoveToPosition != null) return false;
             if (eventtype == TouchType.TouchDown)
             {
-                Game.Client.PlaySoundEffect(Assets.Sounds.Click);
+                Client.PlaySoundEffect(Assets.Sounds.Click);
                 if (State.Moves.Count > 0)
                 {
                     PlayerPosition undo = State.Moves[State.Moves.Count - 1];

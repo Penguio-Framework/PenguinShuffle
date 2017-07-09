@@ -8,14 +8,14 @@ namespace PenguinShuffle.SubLayoutViews
     public class AnimatedCharacterSubLayout : ISubLayoutView
     {
         
-        public Game Game { get; set; }
+        public BaseClient Client { get; set; }
         public int CharacterIndex { get; set; }
 
         public bool Selected { get; set; }
 
-        public AnimatedCharacterSubLayout( Game game, int characterIndex)
+        public AnimatedCharacterSubLayout( BaseClient client, int characterIndex)
         {
-            Game = game;
+            Client = client;
             CharacterIndex = characterIndex;
         }
 
@@ -54,7 +54,7 @@ namespace PenguinShuffle.SubLayoutViews
             }
 
 
-            Game.Client.Timeout(createAnimation, msDuration + RandomUtil.RandomInt(2000, 5500));
+            Client.Timeout(createAnimation, msDuration + RandomUtil.RandomInt(2000, 5500));
         }
 
 

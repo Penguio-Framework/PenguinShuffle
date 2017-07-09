@@ -10,19 +10,15 @@ namespace PenguinShuffle.SettingsArea
     {
         private readonly ScreenTransitioner screenManager;
 
-        public SettingsAreaLayout(Game game, GameService gameService, IRenderer renderer,  ScreenTransitioner screenManager)
+        public SettingsAreaLayout(GameService gameService, ScreenTransitioner screenManager)
         {
             this.screenManager = screenManager;
-            this.game = game;
-            Renderer = renderer;
             GameService = gameService;
 
         }
 
-        private Game game { get; set; }
-        private IRenderer Renderer { get; set; }
         public GameService GameService { get; set; }
-        
+
         public SettingsAreaLayoutState State { get; set; }
         public ILayer mainLayer { get; set; }
 
@@ -129,7 +125,7 @@ namespace PenguinShuffle.SettingsArea
             {
                 if (State.MenuAnimation.Completed)
                 {
-                    game.Client.PlaySoundEffect(Assets.Sounds.Click);
+                    Client.PlaySoundEffect(Assets.Sounds.Click);
                     GameService.CloudSubLayout.SlideLeft();
                     State.ScreenManager.ChangeToLanding();
                 }
@@ -147,7 +143,7 @@ namespace PenguinShuffle.SettingsArea
         public void Tick(TimeSpan elapsedGameTime)
         {
             GameService.CloudSubLayout.TickLayoutView(elapsedGameTime);
- 
+
         }
 
 
@@ -256,7 +252,7 @@ namespace PenguinShuffle.SettingsArea
                 case TouchType.TouchDown:
                     if (State.MenuAnimation.Completed)
                     {
-                        game.Client.PlaySoundEffect(Assets.Sounds.Click);
+                        Client.PlaySoundEffect(Assets.Sounds.Click);
                         State.StartClicked = true;
                         State.MenuAnimation.Reverse();
                         State.StartGameAnimation.Reverse();
@@ -275,7 +271,7 @@ namespace PenguinShuffle.SettingsArea
                 case TouchType.TouchDown:
                     if (State.MenuAnimation.Completed)
                     {
-                        game.Client.PlaySoundEffect(Assets.Sounds.Click);
+                        Client.PlaySoundEffect(Assets.Sounds.Click);
                         State.SelectedMode = (State.SelectedMode == GameMode.Classic) ? GameMode.Puzzle : GameMode.Classic;
                     }
                     break;
@@ -291,7 +287,7 @@ namespace PenguinShuffle.SettingsArea
                 case TouchType.TouchDown:
                     if (State.MenuAnimation.Completed)
                     {
-                        game.Client.PlaySoundEffect(Assets.Sounds.Click);
+                        Client.PlaySoundEffect(Assets.Sounds.Click);
 
                         var selectedNumberOfPlayers = (int)touchBox.State;
                         if (selectedNumberOfPlayers == 1)
@@ -306,7 +302,7 @@ namespace PenguinShuffle.SettingsArea
                             }
                             else
                             {
-//                                game.Client.ClientSettings.PurchaseProduct(GameService.Products[0]);
+                                //                                Client.ClientSettings.PurchaseProduct(GameService.Products[0]);
                             }
                         }
 

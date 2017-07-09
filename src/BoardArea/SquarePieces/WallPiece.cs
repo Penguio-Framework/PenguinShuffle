@@ -7,8 +7,6 @@ namespace PenguinShuffle.BoardArea
     public class WallPiece : ISquarePiece
     {
         
-        private readonly IRenderer renderer;
-
         public WallPiece( Board board, int x, int y, Direction direction)
         {
             Board = board;

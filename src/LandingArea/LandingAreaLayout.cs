@@ -10,18 +10,13 @@ namespace PenguinShuffle.LandingArea
 {
     public class LandingAreaLayout : BaseLayoutView
     {
-        private readonly IRenderer _renderer;
         private readonly ScreenTransitioner _screenTransitioner;
-        private readonly Game game;
         private ILayer mainLayer;
 
-        public LandingAreaLayout(Game game, GameService gameService, IRenderer renderer,  ScreenTransitioner screenTransitioner)
+        public LandingAreaLayout( GameService gameService,   ScreenTransitioner screenTransitioner)
         {
-            this.game = game;
-            _renderer = renderer;
             _screenTransitioner = screenTransitioner;
             GameService = gameService;
-            game.Client.PlaySong(Assets.Songs.MenuMusic);
         }
 
         public LandingAreaLayoutState State { get; set; }
@@ -131,6 +126,7 @@ namespace PenguinShuffle.LandingArea
 
         public override void InitLayoutView()
         {
+            Client.PlaySong(Assets.Songs.MenuMusic);
             Positions = new LandingAreaLayoutStatePositions(Layout);
             Init();
         }
@@ -143,15 +139,13 @@ namespace PenguinShuffle.LandingArea
         public void Init()
         {
             State = new LandingAreaLayoutState();
-            State.SoundSubLayout = new SoundSubLayout( game);
+            State.SoundSubLayout = new SoundSubLayout( Client);
 
             setNextHop();
             GameService.CloudSubLayout.InitLayoutView(TouchManager);
             GameService.CloudSubLayout.SlideLeft();
-            mainLayer = _renderer.CreateLayer(Layout.Width, Layout.Height, Layout);
-            _renderer.AddLayer(mainLayer);
-
-
+            mainLayer = Renderer.CreateLayer(Layout.Width, Layout.Height, Layout);
+            Renderer.AddLayer(mainLayer);
 
 
             TouchManager.PushClickRect(new TouchRect(Positions.StartLocation.X, Positions.StartLocation.Y, 1300, 324, startGame, true));
@@ -284,8 +278,8 @@ namespace PenguinShuffle.LandingArea
             if (State.AboutState != AboutState.Opened) return true;
             if (eventtype == TouchType.TouchDown)
             {
-                game.Client.PlaySoundEffect(Assets.Sounds.Click);
-                game.Client.ClientSettings.SendEmail(BoardConstants.EmailAddress, BoardConstants.EmailSubject, BoardConstants.EmailMessage);
+                Client.PlaySoundEffect(Assets.Sounds.Click);
+                Client.ClientSettings.SendEmail(BoardConstants.EmailAddress, BoardConstants.EmailSubject, BoardConstants.EmailMessage);
                 return false;
             }
             return true;
@@ -296,8 +290,8 @@ namespace PenguinShuffle.LandingArea
             if (State.AboutState != AboutState.Opened) return true;
             if (eventtype == TouchType.TouchDown)
             {
-                game.Client.PlaySoundEffect(Assets.Sounds.Click);
-                game.Client.ClientSettings.OpenAppStore();
+                Client.PlaySoundEffect(Assets.Sounds.Click);
+                Client.ClientSettings.OpenAppStore();
                 return false;
             }
             return true;
@@ -367,14 +361,14 @@ namespace PenguinShuffle.LandingArea
             {
                 if (State.AboutState == AboutState.Opened)
                 {
-                    game.Client.PlaySoundEffect(Assets.Sounds.Click);
+                    Client.PlaySoundEffect(Assets.Sounds.Click);
                     State.AboutState = AboutState.Closing;
                     AboutCloseAnimation.Restart();
                     AboutCloseDialogAnimation.Restart();
                 }
                 else if (State.AboutState == AboutState.Closed)
                 {
-                    game.Client.PlaySoundEffect(Assets.Sounds.Click);
+                    Client.PlaySoundEffect(Assets.Sounds.Click);
                     State.AboutState = AboutState.Opening;
                     AboutOpenAnimation.Restart();
                     AboutOpenDialogAnimation.Restart();
@@ -432,7 +426,7 @@ namespace PenguinShuffle.LandingArea
                 if (State.ShowingTutorial > 0)
                 {
                     State.ShowingTutorial++;
-                    game.Client.PlaySoundEffect(Assets.Sounds.Click);
+                    Client.PlaySoundEffect(Assets.Sounds.Click);
 
                     if (State.ShowingTutorial > 2)
                     {
@@ -442,7 +436,7 @@ namespace PenguinShuffle.LandingArea
                 }
                 if (State.AboutState == AboutState.Opened)
                 {
-                    game.Client.PlaySoundEffect(Assets.Sounds.Click);
+                    Client.PlaySoundEffect(Assets.Sounds.Click);
                     State.AboutState = AboutState.Closing;
                     AboutCloseAnimation.Restart();
                     AboutCloseDialogAnimation.Restart();
@@ -459,7 +453,7 @@ namespace PenguinShuffle.LandingArea
             if (eventtype == TouchType.TouchDown)
             {
                 if (State.StartClicked || !PlayButtonAnimation.Completed) return false;
-                game.Client.PlaySoundEffect(Assets.Sounds.Click);
+                Client.PlaySoundEffect(Assets.Sounds.Click);
                 State.ShowingTutorial = 1;
                 return false;
             }
@@ -473,7 +467,7 @@ namespace PenguinShuffle.LandingArea
             {
                 case TouchType.TouchDown:
                     if (State.StartClicked) return false;
-                    game.Client.PlaySoundEffect(Assets.Sounds.Click);
+                    Client.PlaySoundEffect(Assets.Sounds.Click);
                     State.StartClicked = true;
 
                     IImage logoImage = Assets.Images.Layouts.PenguinLogo;
