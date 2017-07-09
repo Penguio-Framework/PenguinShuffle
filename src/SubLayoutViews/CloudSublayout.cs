@@ -36,7 +36,7 @@ namespace PenguinShuffle.SubLayoutViews
         }
 
 
-        public void TickLayoutView(TimeSpan elapsedGameTime)
+        public  void TickLayoutView(TimeSpan elapsedGameTime)
         {
             Cloud1Path.Animation.Tick(elapsedGameTime);
             Cloud2Path.Animation.Tick(elapsedGameTime);
@@ -45,7 +45,7 @@ namespace PenguinShuffle.SubLayoutViews
         }
 
         public ITouchManager TouchManager { get; private set; }
-        public ILayout Layout { get; set; }
+        public BaseLayout Layout { get; set; }
 
         public void Render(ILayer mainLayer)
         {
@@ -80,7 +80,7 @@ namespace PenguinShuffle.SubLayoutViews
             mainLayer.Restore();
         }
 
-        public void Destroy()
+        public  void Destroy()
         {
         }
 

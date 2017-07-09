@@ -79,13 +79,13 @@ namespace PenguinShuffle.SubLayoutViews
 
         public MotionManager Motion { get; set; }
 
-        public void TickLayoutView(TimeSpan elapsedGameTime)
+        public  void TickLayoutView(TimeSpan elapsedGameTime)
         {
             Motion.Tick(elapsedGameTime);
         }
 
         public ITouchManager TouchManager { get; private set; }
-        public ILayout Layout { get; set; }
+        public BaseLayout Layout { get; set; }
 
         public void Render(ILayer mainLayer)
         {
@@ -99,7 +99,7 @@ namespace PenguinShuffle.SubLayoutViews
             }
         }
 
-        public void Destroy()
+        public  void Destroy()
         {
             Motion = null;
         }

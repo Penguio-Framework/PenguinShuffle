@@ -7,30 +7,23 @@ using PenguinShuffle.SubLayoutViews;
 
 namespace PenguinShuffle.BoardArea.Layouts
 {
-    public class BoardViewingAreaLayout : ILayoutView
+    public class BoardViewingAreaLayout : BaseLayoutView
     {
         private readonly Color buttonBlue = new Color(37, 170, 225);
         private readonly Color white = new Color(255, 255, 255);
 
-        public BoardViewingAreaLayout(Game game, GameService gameService, IRenderer renderer, ILayout layout, ScreenTransitioner screenTransitioner)
+        public BoardViewingAreaLayout(Game game, GameService gameService, IRenderer renderer, ScreenTransitioner screenTransitioner)
         {
             Game = game;
             Renderer = renderer;
             GameService = gameService;
-            Layout = layout;
             ScreenTransitioner = screenTransitioner;
-
-            MainLayer = Renderer.CreateLayer(Layout);
-            Renderer.AddLayer(MainLayer);
-
-            TouchManager = new TouchManager(Game.Client);
 
             CharacterAnimations = new Dictionary<int, AnimatedCharacterSubLayout>();
             for (int i = 1; i <= 6; i++)
             {
                 CharacterAnimations.Add(i, new AnimatedCharacterSubLayout(Game, i));
             }
-
         }
 
         public Dictionary<int, AnimatedCharacterSubLayout> CharacterAnimations;
@@ -43,20 +36,20 @@ namespace PenguinShuffle.BoardArea.Layouts
         public GameService GameService { get; set; }
         public ScreenTransitioner ScreenTransitioner { get; set; }
         
-        public ILayout Layout { get; set; }
-        public ITouchManager TouchManager { get; private set; }
+  
 
-
-        public void Destroy()
+        public override void Destroy()
         {
         }
 
-        public void InitLayoutView()
+        public override void InitLayoutView()
         {
+            MainLayer = Renderer.CreateLayer(Layout);
+            Renderer.AddLayer(MainLayer);
             Init();
         }
 
-        public void TickLayoutView(TimeSpan elapsedGameTime)
+        public override void TickLayoutView(TimeSpan elapsedGameTime)
         {
             Tick(elapsedGameTime);
         }
@@ -393,7 +386,7 @@ namespace PenguinShuffle.BoardArea.Layouts
             }
         }
 
-        public void Render(TimeSpan elapsedGameTime)
+        public override void Render(TimeSpan elapsedGameTime)
         {
             MainLayer.Begin();
             MainLayer.Save();
@@ -653,12 +646,12 @@ namespace PenguinShuffle.BoardArea.Layouts
         public int CurrentNumber = 15;
         public int TotalNumberOfSeconds = 20;
 
-        public BoardViewingAreaLayoutState(ILayout layout)
+        public BoardViewingAreaLayoutState(BaseLayout layout)
         {
             Layout = layout;
         }
 
-        public ILayout Layout { get; set; }
+        public BaseLayout Layout { get; set; }
 
         public Point NSDragMouseDownPosition { get; set; }
         public int NSDragMouseDownStartingNumber { get; set; }
@@ -681,7 +674,7 @@ namespace PenguinShuffle.BoardArea.Layouts
         public Color DarkColorLighter = new Color(235, 231, 232);
 
 
-        public BoardViewingAreaLayoutStatePositions(ILayout layout)
+        public BoardViewingAreaLayoutStatePositions(BaseLayout layout)
         {
             Layout = layout;
 
@@ -765,7 +758,7 @@ namespace PenguinShuffle.BoardArea.Layouts
         public Rectangle NSForthShadowPosition { get; set; }
         public Point BackPosition { get; set; }
 
-        public ILayout Layout { get; set; }
+        public BaseLayout Layout { get; set; }
         public BoardAreaLayoutStateBackPositions BackLayout { get; set; }
         public PointF Help1Position { get; set; }
         public PointF Help2Position { get; set; }

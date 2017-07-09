@@ -6,17 +6,17 @@ using Engine.Interfaces;
 
 namespace PenguinShuffle.SettingsArea
 {
-    public class SettingsAreaLayout : ILayoutView
+    public class SettingsAreaLayout : BaseLayoutView
     {
-        public SettingsAreaLayout(Game game, GameService gameService, IRenderer renderer, ILayout layout, ScreenTransitioner screenManager)
+        private readonly ScreenTransitioner screenManager;
+
+        public SettingsAreaLayout(Game game, GameService gameService, IRenderer renderer,  ScreenTransitioner screenManager)
         {
+            this.screenManager = screenManager;
             this.game = game;
             Renderer = renderer;
             GameService = gameService;
-            Layout = layout;
-            State = new SettingsAreaLayoutState(layout);
 
-            State.ScreenManager = screenManager;
         }
 
         private Game game { get; set; }
@@ -25,15 +25,16 @@ namespace PenguinShuffle.SettingsArea
         
         public SettingsAreaLayoutState State { get; set; }
         public ILayer mainLayer { get; set; }
-        public ILayout Layout { get; set; }
-        public ITouchManager TouchManager { get; private set; }
 
-        public void InitLayoutView()
+        public override void InitLayoutView()
         {
+            State = new SettingsAreaLayoutState(Layout);
+            State.ScreenManager = screenManager;
+
             Init();
         }
 
-        public void Render(TimeSpan elapsedGameTime)
+        public override void Render(TimeSpan elapsedGameTime)
         {
             mainLayer.Begin();
 
@@ -67,11 +68,11 @@ namespace PenguinShuffle.SettingsArea
             mainLayer.End();
         }
 
-        public void Destroy()
+        public override void Destroy()
         {
         }
 
-        public void TickLayoutView(TimeSpan elapsedGameTime)
+        public override void TickLayoutView(TimeSpan elapsedGameTime)
         {
             Tick(elapsedGameTime);
             State.MenuAnimation.Tick(elapsedGameTime);
@@ -84,7 +85,6 @@ namespace PenguinShuffle.SettingsArea
             Renderer.AddLayer(mainLayer);
             State.SelectedNumberOfPlayers = 1;
 
-            TouchManager = new TouchManager(game.Client);
 
             for (int j = 0; j < 6; j++)
             {
@@ -319,7 +319,7 @@ namespace PenguinShuffle.SettingsArea
 
     public class SettingsAreaLayoutState
     {
-        public SettingsAreaLayoutState(ILayout layout)
+        public SettingsAreaLayoutState(BaseLayout layout)
         {
             Layout = layout;
             Positions = new SettingsAreaLayoutStatePositions(layout);
@@ -328,7 +328,7 @@ namespace PenguinShuffle.SettingsArea
         public ScreenTransitioner ScreenManager { get; set; }
         public GameMode SelectedMode { get; set; }
         public int SelectedNumberOfPlayers { get; set; }
-        public ILayout Layout { get; set; }
+        public BaseLayout Layout { get; set; }
         public SettingsAreaLayoutStatePositions Positions { get; set; }
         public MotionManager StartGameAnimation { get; set; }
         public MotionManager MenuAnimation { get; set; }
@@ -339,7 +339,7 @@ namespace PenguinShuffle.SettingsArea
     {
         public Point ButtonSize = new Point(213, 213);
 
-        public SettingsAreaLayoutStatePositions(ILayout layout)
+        public SettingsAreaLayoutStatePositions(BaseLayout layout)
         {
             Layout = layout;
             NumberOfPlayersPosition = new Point(740, 595);
@@ -360,7 +360,7 @@ namespace PenguinShuffle.SettingsArea
             BackPosition = new Point(0, StartGamePosition.Y - 122);
         }
 
-        public ILayout Layout { get; set; }
+        public BaseLayout Layout { get; set; }
 
         public Point StartGamePosition { get; set; }
         public Point ModesButtonPosition { get; set; }

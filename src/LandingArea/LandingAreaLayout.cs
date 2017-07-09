@@ -8,21 +8,19 @@ using PenguinShuffle.Utils;
 
 namespace PenguinShuffle.LandingArea
 {
-    public class LandingAreaLayout : ILayoutView
+    public class LandingAreaLayout : BaseLayoutView
     {
         private readonly IRenderer _renderer;
         private readonly ScreenTransitioner _screenTransitioner;
         private readonly Game game;
         private ILayer mainLayer;
 
-        public LandingAreaLayout(Game game, GameService gameService, IRenderer renderer, ILayout layout, ScreenTransitioner screenTransitioner)
+        public LandingAreaLayout(Game game, GameService gameService, IRenderer renderer,  ScreenTransitioner screenTransitioner)
         {
-            Positions = new LandingAreaLayoutStatePositions(layout);
             this.game = game;
             _renderer = renderer;
             _screenTransitioner = screenTransitioner;
             GameService = gameService;
-            Layout = layout;
             game.Client.PlaySong(Assets.Songs.MenuMusic);
         }
 
@@ -49,12 +47,8 @@ namespace PenguinShuffle.LandingArea
 
         public MotionManager PlayButtonAnimation { get; set; }
         public MotionManager StartGameAnimation { get; set; }
-        public ILayout Layout { get; set; }
 
-
-        public ITouchManager TouchManager { get; private set; }
-
-        public void Render(TimeSpan elapsedGameTime)
+        public override void Render(TimeSpan elapsedGameTime)
         {
             mainLayer.Begin();
 
@@ -131,16 +125,17 @@ namespace PenguinShuffle.LandingArea
             mainLayer.End();
         }
 
-        public void Destroy()
+        public override void Destroy()
         {
         }
 
-        public void InitLayoutView()
+        public override void InitLayoutView()
         {
+            Positions = new LandingAreaLayoutStatePositions(Layout);
             Init();
         }
 
-        public void TickLayoutView(TimeSpan elapsedGameTime)
+        public override void TickLayoutView(TimeSpan elapsedGameTime)
         {
             Tick(elapsedGameTime);
         }
@@ -157,7 +152,6 @@ namespace PenguinShuffle.LandingArea
             _renderer.AddLayer(mainLayer);
 
 
-            TouchManager = new TouchManager(game.Client);
 
 
             TouchManager.PushClickRect(new TouchRect(Positions.StartLocation.X, Positions.StartLocation.Y, 1300, 324, startGame, true));
@@ -535,7 +529,7 @@ namespace PenguinShuffle.LandingArea
         public readonly Point TutorialButtonPosition;
         public readonly Point TutorialPosition;
 
-        public LandingAreaLayoutStatePositions(ILayout layout)
+        public LandingAreaLayoutStatePositions(BaseLayout layout)
         {
             ShuffleLogoLocation = new Point(1030, 526);
             PenguinLogoLocation = new Point(layout.Width / 2, 262);

@@ -7,23 +7,16 @@ using PenguinShuffle.SubLayoutViews;
 
 namespace PenguinShuffle.BoardArea.Layouts
 {
-    public class BoardSlidingAreaLayout : ILayoutView
+    public class BoardSlidingAreaLayout : BaseLayoutView
     {
         private static readonly int[] swipeOffsetPositions = { 0, 1, -1, 2, -2 };
 
-        public BoardSlidingAreaLayout(Game game, GameService gameService, IRenderer renderer, ILayout layout, ScreenTransitioner screenTransitioner)
+        public BoardSlidingAreaLayout(Game game, GameService gameService, IRenderer renderer, ScreenTransitioner screenTransitioner)
         {
             Game = game;
             Renderer = renderer;
             GameService = gameService;
-            Layout = layout;
             ScreenTransitioner = screenTransitioner;
-            State = new BoardAreaLayoutState(layout);
-            Positions = new BoardAreaLayoutStatePositions(layout);
-
-            MainLayer = Renderer.CreateLayer(Layout);
-            Renderer.AddLayer(MainLayer);
-            TouchManager = new TouchManager(Game.Client);
 
             CharacterAnimations = new Dictionary<int, AnimatedCharacterSubLayout>();
             for (int i = 1; i <= 6; i++)
@@ -43,15 +36,19 @@ namespace PenguinShuffle.BoardArea.Layouts
         public GameService GameService { get; set; }
         public ScreenTransitioner ScreenTransitioner { get; set; }
         public BoardAreaLayoutStatePositions Positions { get; set; }
-        public ILayout Layout { get; set; }
-        public ITouchManager TouchManager { get; private set; }
 
-        public void Destroy()
+        public override void Destroy()
         {
         }
 
-        public void InitLayoutView()
+        public override void InitLayoutView()
         {
+
+            State = new BoardAreaLayoutState(Layout);
+            Positions = new BoardAreaLayoutStatePositions(Layout);
+
+            MainLayer = Renderer.CreateLayer(Layout);
+            Renderer.AddLayer(MainLayer);
             Init();
         }
 
@@ -86,12 +83,12 @@ namespace PenguinShuffle.BoardArea.Layouts
                 animatedCharacterSubLayout.Value.InitLayoutView(TouchManager);
             }
         }
-        public void TickLayoutView(TimeSpan elapsedGameTime)
+        public override void TickLayoutView(TimeSpan elapsedGameTime)
         {
             Tick(elapsedGameTime);
         }
 
-        public void Render(TimeSpan elapsedGameTime)
+        public override void Render(TimeSpan elapsedGameTime)
         {
             MainLayer.Begin();
             MainLayer.Save();
@@ -463,12 +460,12 @@ namespace PenguinShuffle.BoardArea.Layouts
 
     public class BoardAreaLayoutState
     {
-        public BoardAreaLayoutState(ILayout layout)
+        public BoardAreaLayoutState(BaseLayout layout)
         {
             Layout = layout;
         }
 
-        public ILayout Layout { get; set; }
+        public BaseLayout Layout { get; set; }
 
         public bool Congrats { get; set; }
         public ChosenNumber CurrentChosenNumber { get; set; }
@@ -482,7 +479,7 @@ namespace PenguinShuffle.BoardArea.Layouts
 
         public Color DarkColor = new Color(35, 31, 32);
 
-        public BoardAreaLayoutStatePositions(ILayout layout)
+        public BoardAreaLayoutStatePositions(BaseLayout layout)
         {
             Layout = layout;
             CharacterShadowPositions = new Point[6];
@@ -524,7 +521,7 @@ namespace PenguinShuffle.BoardArea.Layouts
             UndoButtonRect = new Rectangle(UndoButtonPosition.X, UndoButtonPosition.Y, Layout.Width / 2 + 1, 270);
         }
 
-        public ILayout Layout { get; set; }
+        public BaseLayout Layout { get; set; }
 
 
         public Point SmallCardCharacterPosition { get; set; }

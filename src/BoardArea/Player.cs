@@ -9,7 +9,6 @@ namespace PenguinShuffle.BoardArea
         private const double animationCoolDown = 0.063*2.5;
         private const double animationMinVelocity = 3.2*2.5;
         private readonly Board _board;
-        private readonly IRenderer _renderer;
         
         private double animationVelocity;
 

@@ -6,21 +6,16 @@ using Engine.Interfaces;
 
 namespace PenguinShuffle.BoardArea.Layouts
 {
-    public class BoardCardSelectionAreaLayout : ILayoutView
+    public class BoardCardSelectionAreaLayout : BaseLayoutView
     {
-        public BoardCardSelectionAreaLayout(Game game, GameService gameService, IRenderer renderer, ILayout layout, ScreenTransitioner screenTransitioner)
+        public BoardCardSelectionAreaLayout(Game game, GameService gameService, IRenderer renderer, ScreenTransitioner screenTransitioner)
         {
             Game = game;
             Renderer = renderer;
             GameService = gameService;
-            Layout = layout;
             ScreenTransitioner = screenTransitioner;
-            TouchManager = new TouchManager(Game.Client);
-            MainLayer = Renderer.CreateLayer(Layout);
-            Renderer.AddLayer(MainLayer);
+        
 
-            State = new BoardCardSelectionAreaLayoutState(layout);
-            Positions = new BoardCardSelectionAreaLayoutStatePositions(layout);
         }
 
         public Game Game { get; set; }
@@ -32,28 +27,28 @@ namespace PenguinShuffle.BoardArea.Layouts
         public GameService GameService { get; set; }
         public ScreenTransitioner ScreenTransitioner { get; set; }
 
-        
+         
 
-        public ILayout Layout { get; set; }
-
-        public ITouchManager TouchManager { get; private set; }
-
-
-        public void Destroy()
+        public override void Destroy()
         {
         }
 
-        public void InitLayoutView()
+        public override void InitLayoutView()
         {
+
+            State = new BoardCardSelectionAreaLayoutState(Layout);
+            Positions = new BoardCardSelectionAreaLayoutStatePositions(Layout);
+            MainLayer = Renderer.CreateLayer(Layout);
+            Renderer.AddLayer(MainLayer);
             Init();
         }
 
-        public void TickLayoutView(TimeSpan elapsedGameTime)
+        public override void TickLayoutView(TimeSpan elapsedGameTime)
         {
             Tick(elapsedGameTime);
         }
 
-        public void Render(TimeSpan elapsedGameTime)
+        public override void Render(TimeSpan elapsedGameTime)
         {
             MainLayer.Begin();
 
@@ -299,12 +294,12 @@ namespace PenguinShuffle.BoardArea.Layouts
 
     public class BoardCardSelectionAreaLayoutState
     {
-        public BoardCardSelectionAreaLayoutState(ILayout layout)
+        public BoardCardSelectionAreaLayoutState(BaseLayout layout)
         {
             Layout = layout;
         }
 
-        public ILayout Layout { get; set; }
+        public BaseLayout Layout { get; set; }
         public int CurrentPlayerChoosing { get; set; }
         public MotionManager CardAnimationMotion { get; set; }
         public Goal CurrentlySelectedGoal { get; set; }
@@ -312,7 +307,7 @@ namespace PenguinShuffle.BoardArea.Layouts
 
     public class BoardCardSelectionAreaLayoutStatePositions
     {
-        public BoardCardSelectionAreaLayoutStatePositions(ILayout layout)
+        public BoardCardSelectionAreaLayoutStatePositions(BaseLayout layout)
         {
             Layout = layout;
             BottomCardSize = 304;
@@ -322,7 +317,7 @@ namespace PenguinShuffle.BoardArea.Layouts
             SelectACardPosition = new Point(Layout.Width / 2, 767);
         }
 
-        public ILayout Layout { get; set; }
+        public BaseLayout Layout { get; set; }
         public Point CongratsPosition { get; set; }
         public int BottomCardSize { get; set; }
         public int BottomCardAreaWidth { get; set; }

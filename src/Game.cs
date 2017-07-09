@@ -11,7 +11,7 @@ using PenguinShuffle.SettingsArea;
 
 namespace PenguinShuffle
 {
-    public class Game : IGame
+    public class Game : BaseGame
     {
         public IScreen boardCardSelectionScreen;
         public IScreen boardScreen;
@@ -24,26 +24,10 @@ namespace PenguinShuffle
 
         public GameService GameService { get; set; }
 
-        public ILayout SettingsAreaLayout { get; set; }
-        public ILayout LandingAreaLayout { get; set; }
-        public ILayout BoardAreaLayout { get; set; }
-        public ILayout BoardAreaViewingLayout { get; set; }
-        public ILayout BoardAreaCardSelectionLayout { get; set; }
-        public ILayout ChoosePuzzleAreaLayout { get; set; }
-        public ILayout PuzzleBoardAreaLayout { get; set; }
-        public ILayout BoardAreaSelectionLayout { get; set; }
-        public ILayout CreateBoardAreaLayout { get; set; }
-
-        public IScreenManager ScreenManager { get; set; }
-        public IClient Client { get; set; }
-
-        public AssetManager AssetManager { get; set; }
 
 
-
-        public void InitScreens(IRenderer renderer, IScreenManager screenManager)
+        public override void InitScreens(IRenderer renderer)
         {
-            ScreenManager = screenManager;
 
             GameService = new GameService();
 
@@ -51,34 +35,54 @@ namespace PenguinShuffle
             int width = 1536;
             int height = 2048;
 
-            landingScreen = screenManager.CreateScreen();
-            LandingAreaLayout = landingScreen.CreateLayout(width, height).MakeActive().SetScreenOrientation(ScreenOrientation.Vertical);
-            LandingAreaLayout.LayoutView = new LandingAreaLayout(this, GameService, renderer, LandingAreaLayout, screenTransitioner);
+            landingScreen = ScreenManager.CreateScreen();
+            landingScreen
+                .CreateLayout(width, height)
+                .MakeActive()
+                .SetScreenOrientation(ScreenOrientation.Vertical)
+                .SetLayout(new LandingAreaLayout(this, GameService, renderer, screenTransitioner));
 
 
-            settingsScreen = screenManager.CreateScreen();
-            SettingsAreaLayout = settingsScreen.CreateLayout(width, height).MakeActive().SetScreenOrientation(ScreenOrientation.Vertical);
-            SettingsAreaLayout.LayoutView = new SettingsAreaLayout(this, GameService, renderer, SettingsAreaLayout, screenTransitioner);
+            settingsScreen = ScreenManager.CreateScreen();
+            settingsScreen
+                .CreateLayout(width, height)
+                .MakeActive()
+                .SetScreenOrientation(ScreenOrientation.Vertical)
+                .SetLayout(new SettingsAreaLayout(this, GameService, renderer, screenTransitioner));
 
-            boardSelectionScreen = screenManager.CreateScreen();
-            BoardAreaSelectionLayout = boardSelectionScreen.CreateLayout(width, height).MakeActive().SetScreenOrientation(ScreenOrientation.Vertical);
-            BoardAreaSelectionLayout.LayoutView = new BoardSelectionAreaLayout(this, GameService, renderer, BoardAreaSelectionLayout, screenTransitioner);
-
-
-            boardCardSelectionScreen = screenManager.CreateScreen();
-            BoardAreaCardSelectionLayout = boardCardSelectionScreen.CreateLayout(width, height).MakeActive().SetScreenOrientation(ScreenOrientation.Vertical);
-            BoardAreaCardSelectionLayout.LayoutView = new BoardCardSelectionAreaLayout(this, GameService, renderer, BoardAreaCardSelectionLayout, screenTransitioner);
-
-
-            boardViewingScreen = screenManager.CreateScreen();
-            BoardAreaViewingLayout = boardViewingScreen.CreateLayout(width, height).MakeActive().SetScreenOrientation(ScreenOrientation.Vertical);
-            BoardAreaViewingLayout.LayoutView = new BoardViewingAreaLayout(this, GameService, renderer, BoardAreaViewingLayout, screenTransitioner);
+            boardSelectionScreen = ScreenManager.CreateScreen();
+            boardSelectionScreen
+                .CreateLayout(width, height)
+                .MakeActive()
+                .SetScreenOrientation(ScreenOrientation.Vertical)
+                .SetLayout(new BoardSelectionAreaLayout(this, GameService, renderer, screenTransitioner));
 
 
-            boardScreen = screenManager.CreateScreen();
-            BoardAreaLayout = boardScreen.CreateLayout(width, height).MakeActive().SetScreenOrientation(ScreenOrientation.Vertical);
-            BoardAreaLayout.LayoutView = new BoardSlidingAreaLayout(this, GameService, renderer, BoardAreaLayout, screenTransitioner);
 
+            boardCardSelectionScreen = ScreenManager.CreateScreen();
+            boardCardSelectionScreen
+                .CreateLayout(width, height)
+                .MakeActive()
+                .SetScreenOrientation(ScreenOrientation.Vertical)
+                .SetLayout(new BoardCardSelectionAreaLayout(this, GameService, renderer, screenTransitioner));
+
+
+
+            boardViewingScreen = ScreenManager.CreateScreen();
+            boardViewingScreen
+                .CreateLayout(width, height)
+                .MakeActive()
+                .SetScreenOrientation(ScreenOrientation.Vertical)
+                .SetLayout(new BoardViewingAreaLayout(this, GameService, renderer, screenTransitioner));
+
+
+
+            boardScreen = ScreenManager.CreateScreen();
+            boardScreen
+                .CreateLayout(width, height)
+                .MakeActive()
+                .SetScreenOrientation(ScreenOrientation.Vertical)
+                .SetLayout(new BoardSlidingAreaLayout(this, GameService, renderer, screenTransitioner));
 
             ScreenManager.ChangeScreen(landingScreen);
         }
@@ -90,7 +94,7 @@ namespace PenguinShuffle
                         Socket = socketManager.Create("http://192.168.1.3:3000/");
                         Socket.OnConnect = () =>
                         {
-                            Socket.Emit("shoes2", new { Fuck = "Yopu" });
+                            Socket.Emit("shoes2", new { test = "test" });
                         };
                         Socket.On<int>("shoes", a =>
                         {
@@ -104,25 +108,25 @@ namespace PenguinShuffle
         }
 
 
-        public void BeforeDraw()
+        public override void BeforeDraw()
         {
         }
 
-        public void AfterDraw()
-        {
-        }
-
-
-        public void BeforeTick()
-        {
-        }
-
-        public void AfterTick()
+        public override void AfterDraw()
         {
         }
 
 
-        public void LoadAssets(IRenderer renderer)
+        public override void BeforeTick()
+        {
+        }
+
+        public override void AfterTick()
+        {
+        }
+
+
+        public override void LoadAssets(IRenderer renderer)
         {
             Assets.LoadAssets(renderer, AssetManager);
             Client.SetCustomLetterbox(Assets.Images.Layouts.GrayBg);
