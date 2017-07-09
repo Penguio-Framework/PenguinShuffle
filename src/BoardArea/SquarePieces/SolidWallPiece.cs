@@ -7,13 +7,12 @@ namespace PenguinShuffle.BoardArea
 {
     public class SolidWallPiece : ISquarePiece
     {
-        private readonly AssetManager assetManager;
+        
 
 
-        public SolidWallPiece(AssetManager assetManager, Board board, int x, int y)
+        public SolidWallPiece( Board board, int x, int y)
         {
             Board = board;
-            this.assetManager = assetManager;
             Position = new Point(x, y);
             Type = SquareTypes.SolidWall;
 

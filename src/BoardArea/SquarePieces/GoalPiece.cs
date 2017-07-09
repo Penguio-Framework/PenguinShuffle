@@ -6,11 +6,10 @@ namespace PenguinShuffle.BoardArea
 {
     public class GoalPiece : ISquarePiece
     {
-        private readonly AssetManager assetManager;
+        
 
-        public GoalPiece(AssetManager assetManager, Board board, int x, int y, Goal goal)
+        public GoalPiece(Board board, int x, int y, Goal goal)
         {
-            this.assetManager = assetManager;
             Board = board;
             Goal = goal;
             Position = new Point(x, y);
@@ -60,7 +59,7 @@ namespace PenguinShuffle.BoardArea
         {
         }
 
-        public static IImage GetGoalImage(AssetManager assetManager, Goal gc)
+        public static IImage GetGoalImage(Goal gc)
         {
             if (gc.IsExtra)
             {
@@ -73,7 +72,7 @@ namespace PenguinShuffle.BoardArea
             return Assets.Images.Cards.Big.Cards[gc.PlayerNumber + 1];
         }
 
-        public static IImage GetBaseImage(AssetManager assetManager, Goal gc)
+        public static IImage GetBaseImage(Goal gc)
         {
             if (gc.IsExtra)
             {

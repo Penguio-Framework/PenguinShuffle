@@ -23,7 +23,6 @@ namespace PenguinShuffle.LandingArea
             _screenTransitioner = screenTransitioner;
             GameService = gameService;
             Layout = layout;
-            AssetManager = game.AssetManager;
             game.Client.PlaySong(Assets.Songs.MenuMusic);
         }
 
@@ -46,7 +45,6 @@ namespace PenguinShuffle.LandingArea
 
         public GameService GameService { get; set; }
 
-        public AssetManager AssetManager { get; set; }
         public MotionManager InitialPenguinHop { get; set; }
 
         public MotionManager PlayButtonAnimation { get; set; }
@@ -150,7 +148,7 @@ namespace PenguinShuffle.LandingArea
         public void Init()
         {
             State = new LandingAreaLayoutState();
-            State.SoundSubLayout = new SoundSubLayout(AssetManager, game);
+            State.SoundSubLayout = new SoundSubLayout( game);
 
             setNextHop();
             GameService.CloudSubLayout.InitLayoutView(TouchManager);

@@ -18,7 +18,6 @@ namespace PenguinShuffle.BoardArea.Layouts
             GameService = gameService;
             Layout = layout;
             ScreenTransitioner = screenTransitioner;
-            AssetManager = game.AssetManager;
             State = new BoardAreaLayoutState(layout);
             Positions = new BoardAreaLayoutStatePositions(layout);
 
@@ -29,7 +28,7 @@ namespace PenguinShuffle.BoardArea.Layouts
             CharacterAnimations = new Dictionary<int, AnimatedCharacterSubLayout>();
             for (int i = 1; i <= 6; i++)
             {
-                CharacterAnimations.Add(i, new AnimatedCharacterSubLayout(AssetManager, Game, i));
+                CharacterAnimations.Add(i, new AnimatedCharacterSubLayout( Game, i));
             }
 
         }
@@ -40,7 +39,7 @@ namespace PenguinShuffle.BoardArea.Layouts
         public IRenderer Renderer { get; set; }
         public ILayer MainLayer { get; set; }
         public BoardAreaLayoutState State { get; set; }
-        public AssetManager AssetManager { get; set; }
+        
         public GameService GameService { get; set; }
         public ScreenTransitioner ScreenTransitioner { get; set; }
         public BoardAreaLayoutStatePositions Positions { get; set; }
@@ -288,7 +287,7 @@ namespace PenguinShuffle.BoardArea.Layouts
         {
             Point pos = Positions.CharacterPositions[State.CurrentChosenNumber.Character.CharacterNumber];
             State.Congrats = true;
-            IImage goalImage = GoalPiece.GetGoalImage(AssetManager, GameService.ClassicGameState.CurrentGoal);
+            IImage goalImage = GoalPiece.GetGoalImage(GameService.ClassicGameState.CurrentGoal);
             State.CardAnimationMotion = MotionManager.StartMotion(Positions.CongratsPosition.X, Positions.CongratsPosition.Y, new WaitMotion(200))
                 .Motion(new AnimationMotion(pos.X + 0, pos.Y + BoardConstants.TopAreaHeight, 2000, AnimationEasing.BounceEaseOut))
                 .OnRender((layer, posX, posY, animationIndex, percentDone) =>
@@ -390,9 +389,9 @@ namespace PenguinShuffle.BoardArea.Layouts
 
             MainLayer.DrawImage(smallGoalArrow, Positions.SmallCardArrowPosition.X, Positions.SmallCardArrowPosition.Y, true);
 
-            IImage baseImage = GoalPiece.GetBaseImage(AssetManager, GameService.ClassicGameState.CurrentGoal);
+            IImage baseImage = GoalPiece.GetBaseImage(GameService.ClassicGameState.CurrentGoal);
 
-            IImage goalImage = GoalPiece.GetGoalImage(AssetManager, GameService.ClassicGameState.CurrentGoal);
+            IImage goalImage = GoalPiece.GetGoalImage(GameService.ClassicGameState.CurrentGoal);
 
             MainLayer.DrawImage(baseImage, Positions.SmallCardCharacterPosition.X, Positions.SmallCardCharacterPosition.Y, 150, 150, true);
             MainLayer.DrawImage(smallGoalArrow, Positions.SmallCardArrowPosition.X, Positions.SmallCardArrowPosition.Y, 50, 30, true);

@@ -15,10 +15,9 @@ namespace PenguinShuffle
     {
         private GameMode gameMode;
 
-        public GameService(AssetManager assetManager)
+        public GameService()
         {
-            AssetManager = assetManager;
-            CloudSubLayout = new CloudSubLayout(assetManager);
+            CloudSubLayout = new CloudSubLayout();
         }
 
 
@@ -51,7 +50,7 @@ namespace PenguinShuffle
             }
         }
 
-        public AssetManager AssetManager { get; set; }
+        
 //        public List<IPurchasableProduct> Products { get; set; }
         public bool HasMultiplayer { get; set; }
     }
@@ -71,9 +70,9 @@ namespace PenguinShuffle
         public List<Puzzle> Puzzles { get; set; }
         public Puzzle CurrentPuzzle { get; set; }
 
-        public void SetPuzzle(AssetManager assetManager, Puzzle puzzle)
+        public void SetPuzzle( Puzzle puzzle)
         {
-            puzzle.Create(assetManager);
+            puzzle.Create( );
             CurrentPuzzle = puzzle;
         }
     }
@@ -87,11 +86,11 @@ namespace PenguinShuffle
         public PuzzleBoardInfo BoardInfo { get; set; }
         public int NumberOfMoves { get; set; }
 
-        public void Create(AssetManager assetManager)
+        public void Create()
         {
             Goal = BoardInfo.Goal;
             NumberOfMoves = BoardInfo.NumberOfMoves;
-            Board = new Board(assetManager, null /*todo*/, BoardInfo);
+            Board = new Board(null /*todo*/, BoardInfo);
             Board.StartGame();
         }
     }
@@ -170,13 +169,13 @@ namespace PenguinShuffle
                         break;
                     case SquareTypes.Player:
 
-                        board.Players.Add(new Player(board.AssetManager, board, int.Parse(puzzleBoardInfoSquare.State) + 1, puzzleBoardInfoSquare.Position.X, puzzleBoardInfoSquare.Position.Y));
+                        board.Players.Add(new Player( board, int.Parse(puzzleBoardInfoSquare.State) + 1, puzzleBoardInfoSquare.Position.X, puzzleBoardInfoSquare.Position.Y));
                         break;
                     case SquareTypes.SolidWall:
-                        board.SquarePieces.Add(new SolidWallPiece(board.AssetManager, board, puzzleBoardInfoSquare.Position.X, puzzleBoardInfoSquare.Position.Y));
+                        board.SquarePieces.Add(new SolidWallPiece(board, puzzleBoardInfoSquare.Position.X, puzzleBoardInfoSquare.Position.Y));
                         break;
                     case SquareTypes.Wall:
-                        board.SquarePieces.Add(new WallPiece(board.AssetManager, board, puzzleBoardInfoSquare.Position.X, puzzleBoardInfoSquare.Position.Y, (Direction) int.Parse(puzzleBoardInfoSquare.State)));
+                        board.SquarePieces.Add(new WallPiece( board, puzzleBoardInfoSquare.Position.X, puzzleBoardInfoSquare.Position.Y, (Direction) int.Parse(puzzleBoardInfoSquare.State)));
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();

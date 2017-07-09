@@ -9,13 +9,12 @@ namespace PenguinShuffle.SubLayoutViews
         private readonly Game game;
         public Point SoundToggleButtonPosition;
 
-        public SoundSubLayout(AssetManager assetManager, Game game)
+        public SoundSubLayout( Game game)
         {
-            this.game = game;
-            AssetManager = assetManager;
+            this.game = game; 
         }
 
-        public AssetManager AssetManager { get; set; }
+        
 
         public void InitLayoutView(ITouchManager touchManager)
         {

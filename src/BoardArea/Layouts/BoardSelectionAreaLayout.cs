@@ -17,7 +17,6 @@ namespace PenguinShuffle.BoardArea.Layouts
             GameService = gameService;
             Layout = layout;
             ScreenTransitioner = screenTransitioner;
-            AssetManager = game.AssetManager;
 
             MainLayer = Renderer.CreateLayer(Layout);
             Renderer.AddLayer(MainLayer);
@@ -29,7 +28,7 @@ namespace PenguinShuffle.BoardArea.Layouts
             CharacterAnimations = new Dictionary<int, AnimatedCharacterSubLayout>();
             for (int i = 1; i <= 6; i++)
             {
-                CharacterAnimations.Add(i, new AnimatedCharacterSubLayout(AssetManager, Game, i));
+                CharacterAnimations.Add(i, new AnimatedCharacterSubLayout( Game, i));
             }
 
         }
@@ -43,7 +42,7 @@ namespace PenguinShuffle.BoardArea.Layouts
         public ILayer MainLayer { get; set; }
         public GameService GameService { get; set; }
         public ScreenTransitioner ScreenTransitioner { get; set; }
-        public AssetManager AssetManager { get; set; }
+        
         public BoardSelectionAreaLayoutState State { get; set; }
 
         public BoardSelectionAreaLayoutStatePositions Positions { get; set; }

@@ -7,15 +7,14 @@ namespace PenguinShuffle.SubLayoutViews
 {
     public class AnimatedCharacterSubLayout : ISubLayoutView
     {
-        public AssetManager AssetManager { get; set; }
+        
         public Game Game { get; set; }
         public int CharacterIndex { get; set; }
 
         public bool Selected { get; set; }
 
-        public AnimatedCharacterSubLayout(AssetManager assetManager, Game game, int characterIndex)
+        public AnimatedCharacterSubLayout( Game game, int characterIndex)
         {
-            AssetManager = assetManager;
             Game = game;
             CharacterIndex = characterIndex;
         }

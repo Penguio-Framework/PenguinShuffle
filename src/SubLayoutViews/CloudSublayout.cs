@@ -12,10 +12,8 @@ namespace PenguinShuffle.SubLayoutViews
         private readonly CloudPath Cloud2Path;
         private readonly CloudPath Cloud3Path;
 
-        public CloudSubLayout(AssetManager assetManager)
+        public CloudSubLayout()
         {
-            AssetManager = assetManager;
-
 
             Cloud1Path = new CloudPath((mainLayer, x, y) => mainLayer.DrawImage(Assets.Images.Layouts.Cloud1, x, y));
             Cloud2Path = new CloudPath((mainLayer, x, y) => mainLayer.DrawImage(Assets.Images.Layouts.Cloud2, x, y));
@@ -27,7 +25,7 @@ namespace PenguinShuffle.SubLayoutViews
             BgSlidingState = BgSlidingState.Left;
         }
 
-        public AssetManager AssetManager { get; set; }
+        
 
         public MotionManager BackgroundAnimation { get; set; }
 

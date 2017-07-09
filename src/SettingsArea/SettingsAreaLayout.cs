@@ -14,7 +14,6 @@ namespace PenguinShuffle.SettingsArea
             Renderer = renderer;
             GameService = gameService;
             Layout = layout;
-            AssetManager = game.AssetManager;
             State = new SettingsAreaLayoutState(layout);
 
             State.ScreenManager = screenManager;
@@ -23,7 +22,7 @@ namespace PenguinShuffle.SettingsArea
         private Game game { get; set; }
         private IRenderer Renderer { get; set; }
         public GameService GameService { get; set; }
-        public AssetManager AssetManager { get; set; }
+        
         public SettingsAreaLayoutState State { get; set; }
         public ILayer mainLayer { get; set; }
         public ILayout Layout { get; set; }

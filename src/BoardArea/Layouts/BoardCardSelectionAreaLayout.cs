@@ -15,7 +15,6 @@ namespace PenguinShuffle.BoardArea.Layouts
             GameService = gameService;
             Layout = layout;
             ScreenTransitioner = screenTransitioner;
-            AssetManager = game.AssetManager;
             TouchManager = new TouchManager(Game.Client);
             MainLayer = Renderer.CreateLayer(Layout);
             Renderer.AddLayer(MainLayer);
@@ -33,7 +32,7 @@ namespace PenguinShuffle.BoardArea.Layouts
         public GameService GameService { get; set; }
         public ScreenTransitioner ScreenTransitioner { get; set; }
 
-        public AssetManager AssetManager { get; set; }
+        
 
         public ILayout Layout { get; set; }
 
@@ -201,7 +200,7 @@ namespace PenguinShuffle.BoardArea.Layouts
 
                 Game.Client.PlaySoundEffect(Assets.Sounds.Click);
                 var gc = (Goal)touchbox.State;
-                IImage goalImage = GoalPiece.GetGoalImage(AssetManager, gc);
+                IImage goalImage = GoalPiece.GetGoalImage(gc);
 
 
                 Goal[] goals = GameService.ClassicGameState.UnusedGoals;

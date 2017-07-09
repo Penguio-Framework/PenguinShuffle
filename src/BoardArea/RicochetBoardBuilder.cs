@@ -7,14 +7,13 @@ namespace PenguinShuffle.BoardArea
 {
     internal class RicochetBoardBuilder : IBoardBuilder
     {
-        private readonly AssetManager assetManager;
+
 
         private Board board;
 
-        public RicochetBoardBuilder(AssetManager assetManager, GameService gameService)
+        public RicochetBoardBuilder( GameService gameService)
         {
             GameService = gameService;
-            this.assetManager = assetManager;
         }
 
         public GameService GameService { get; set; }
@@ -33,7 +32,7 @@ namespace PenguinShuffle.BoardArea
 
         public void AddPlayer(int x, int y, int characterNumber)
         {
-            board.Players.Add(new Player(assetManager, board, characterNumber + 1, x, y));
+            board.Players.Add(new Player(board, characterNumber + 1, x, y));
         }
 
         private void buildInner()
@@ -105,12 +104,12 @@ namespace PenguinShuffle.BoardArea
                         }
                         Direction adjacent = direction.GetAdjacent();
 
-                        var g = new GoalPiece(assetManager, board, nX, nY, GameService.ClassicGameState.Goals[totalGoals++]);
+                        var g = new GoalPiece(board, nX, nY, GameService.ClassicGameState.Goals[totalGoals++]);
                         addedPieces.Add(g);
                         board.SquarePieces.Add(g);
 
-                        var wall1 = new WallPiece(assetManager, board, nX, nY, direction);
-                        var wall2 = new WallPiece(assetManager, board, nX, nY, adjacent);
+                        var wall1 = new WallPiece(board, nX, nY, direction);
+                        var wall2 = new WallPiece(board, nX, nY, adjacent);
                         addedPieces.Add(wall1);
                         addedPieces.Add(wall2);
                         board.SquarePieces.Add(wall1);
@@ -139,7 +138,7 @@ namespace PenguinShuffle.BoardArea
 
                 count++;
 
-                ISquarePiece sw = new SolidWallPiece(assetManager, board, nX, nY);
+                ISquarePiece sw = new SolidWallPiece( board, nX, nY);
                 addedPieces.Add(sw);
                 board.SquarePieces.Add(sw);
             }
@@ -163,14 +162,14 @@ namespace PenguinShuffle.BoardArea
 
         private void buildCenter()
         {
-            board.SquarePieces.Add(new SolidWallPiece(assetManager, board, BoardConstants.SquareWidth/2 - 1,
-                BoardConstants.SquareHeight/2 - 1));
-            board.SquarePieces.Add(new SolidWallPiece(assetManager, board, BoardConstants.SquareWidth/2 - 1,
-                BoardConstants.SquareHeight/2));
-            board.SquarePieces.Add(new SolidWallPiece(assetManager, board, BoardConstants.SquareWidth/2,
-                BoardConstants.SquareHeight/2 - 1));
-            board.SquarePieces.Add(new SolidWallPiece(assetManager, board, BoardConstants.SquareWidth/2,
-                BoardConstants.SquareHeight/2));
+            board.SquarePieces.Add(new SolidWallPiece(board, BoardConstants.SquareWidth / 2 - 1,
+                BoardConstants.SquareHeight / 2 - 1));
+            board.SquarePieces.Add(new SolidWallPiece(board, BoardConstants.SquareWidth / 2 - 1,
+                BoardConstants.SquareHeight / 2));
+            board.SquarePieces.Add(new SolidWallPiece(board, BoardConstants.SquareWidth / 2,
+                BoardConstants.SquareHeight / 2 - 1));
+            board.SquarePieces.Add(new SolidWallPiece(board, BoardConstants.SquareWidth / 2,
+                BoardConstants.SquareHeight / 2));
         }
 
         private void buildSideWalls()
@@ -216,7 +215,7 @@ namespace PenguinShuffle.BoardArea
                         wallNumber--;
                         continue;
                     }
-                    board.SquarePieces.Add(new WallPiece(assetManager, board, randomX, randomY, direction));
+                    board.SquarePieces.Add(new WallPiece( board, randomX, randomY, direction));
                 }
             }
         }

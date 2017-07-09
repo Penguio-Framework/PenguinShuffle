@@ -6,12 +6,11 @@ namespace PenguinShuffle.BoardArea
 {
     public class WallPiece : ISquarePiece
     {
-        private readonly AssetManager assetManager;
+        
         private readonly IRenderer renderer;
 
-        public WallPiece(AssetManager assetManager, Board board, int x, int y, Direction direction)
+        public WallPiece( Board board, int x, int y, Direction direction)
         {
-            this.assetManager = assetManager;
             Board = board;
             Direction = direction;
             Position = new Point(x, y);

@@ -19,7 +19,6 @@ namespace PenguinShuffle.BoardArea.Layouts
             GameService = gameService;
             Layout = layout;
             ScreenTransitioner = screenTransitioner;
-            AssetManager = game.AssetManager;
 
             MainLayer = Renderer.CreateLayer(Layout);
             Renderer.AddLayer(MainLayer);
@@ -29,7 +28,7 @@ namespace PenguinShuffle.BoardArea.Layouts
             CharacterAnimations = new Dictionary<int, AnimatedCharacterSubLayout>();
             for (int i = 1; i <= 6; i++)
             {
-                CharacterAnimations.Add(i, new AnimatedCharacterSubLayout(AssetManager, Game, i));
+                CharacterAnimations.Add(i, new AnimatedCharacterSubLayout(Game, i));
             }
 
         }
@@ -43,7 +42,7 @@ namespace PenguinShuffle.BoardArea.Layouts
         public BoardViewingAreaLayoutState State { get; set; }
         public GameService GameService { get; set; }
         public ScreenTransitioner ScreenTransitioner { get; set; }
-        public AssetManager AssetManager { get; set; }
+        
         public ILayout Layout { get; set; }
         public ITouchManager TouchManager { get; private set; }
 
@@ -491,8 +490,8 @@ namespace PenguinShuffle.BoardArea.Layouts
 
         private void drawBottomInfo()
         {
-            IImage baseImage = GoalPiece.GetBaseImage(AssetManager, GameService.ClassicGameState.CurrentGoal);
-            IImage goalImage = GoalPiece.GetGoalImage(AssetManager, GameService.ClassicGameState.CurrentGoal);
+            IImage baseImage = GoalPiece.GetBaseImage(GameService.ClassicGameState.CurrentGoal);
+            IImage goalImage = GoalPiece.GetGoalImage( GameService.ClassicGameState.CurrentGoal);
 
             IImage goalArrow = Assets.Images.Layouts.Arrow;
             IImage smallGoalArrow = Assets.Images.Layouts.Arrow;

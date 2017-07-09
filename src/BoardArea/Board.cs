@@ -8,14 +8,13 @@ namespace PenguinShuffle.BoardArea
     public class Board
     {
         public PuzzleBoardInfo BoardInfo { get; set; }
-        public AssetManager AssetManager { get; set; }
+        
         public GameService GameService { get; set; }
         public IBoardBuilder BoardBuilder { get; set; }
 
-        public Board(AssetManager assetManager, GameService gameService, PuzzleBoardInfo boardInfo = null)
+        public Board( GameService gameService, PuzzleBoardInfo boardInfo = null)
         {
             BoardInfo = boardInfo;
-            AssetManager = assetManager;
             GameService = gameService;
         }
 
@@ -43,7 +42,7 @@ namespace PenguinShuffle.BoardArea
             }
             else
             {
-                BoardBuilder = new RicochetBoardBuilder(AssetManager, GameService);
+                BoardBuilder = new RicochetBoardBuilder( GameService);
                 BoardBuilder.BuildBoard(this);
             }
         }

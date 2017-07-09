@@ -10,12 +10,11 @@ namespace PenguinShuffle.BoardArea
         private const double animationMinVelocity = 3.2*2.5;
         private readonly Board _board;
         private readonly IRenderer _renderer;
-        private readonly AssetManager assetManager;
+        
         private double animationVelocity;
 
-        public Player(AssetManager assetManager, Board board, int playerNumber, int x, int y)
+        public Player( Board board, int playerNumber, int x, int y)
         {
-            this.assetManager = assetManager;
             _board = board;
             PlayerNumber = playerNumber;
             Direction = Direction.Bottom;
