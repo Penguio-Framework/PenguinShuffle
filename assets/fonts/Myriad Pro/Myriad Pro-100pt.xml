@@ -1,69 +1,117 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <fontMetrics file="a">
-  <character character="48">
+  <character character="36">
     <x>8</x>
     <y>8</y>
-    <width>45</width>
-    <height>68</height>
+    <width>40</width>
+    <height>90</height>
   </character>
-  <character character="49">
-    <x>61</x>
+  <character character="78">
+    <x>56</x>
     <y>8</y>
-    <width>23</width>
-    <height>68</height>
+    <width>57</width>
+    <height>90</height>
   </character>
-  <character character="50">
-    <x>92</x>
+  <character character="85">
+    <x>121</x>
     <y>8</y>
-    <width>42</width>
-    <height>68</height>
+    <width>53</width>
+    <height>90</height>
   </character>
-  <character character="51">
-    <x>142</x>
+  <character character="77">
+    <x>182</x>
     <y>8</y>
-    <width>41</width>
-    <height>68</height>
+    <width>72</width>
+    <height>90</height>
   </character>
-  <character character="52">
-    <x>191</x>
-    <y>8</y>
-    <width>49</width>
-    <height>68</height>
-  </character>
-  <character character="53">
-    <x>248</x>
-    <y>8</y>
-    <width>41</width>
-    <height>68</height>
-  </character>
-  <character character="54">
-    <x>297</x>
-    <y>8</y>
-    <width>45</width>
-    <height>68</height>
-  </character>
-  <character character="55">
-    <x>350</x>
-    <y>8</y>
-    <width>42</width>
-    <height>68</height>
-  </character>
-  <character character="56">
-    <x>400</x>
-    <y>8</y>
-    <width>45</width>
-    <height>68</height>
-  </character>
-  <character character="57">
-    <x>453</x>
+  <character character="66">
+    <x>262</x>
     <y>8</y>
     <width>44</width>
-    <height>68</height>
+    <height>90</height>
+  </character>
+  <character character="69">
+    <x>314</x>
+    <y>8</y>
+    <width>38</width>
+    <height>90</height>
+  </character>
+  <character character="82">
+    <x>360</x>
+    <y>8</y>
+    <width>51</width>
+    <height>90</height>
+  </character>
+  <character character="83">
+    <x>419</x>
+    <y>8</y>
+    <width>43</width>
+    <height>90</height>
+  </character>
+  <character character="48">
+    <x>470</x>
+    <y>8</y>
+    <width>46</width>
+    <height>90</height>
+  </character>
+  <character character="49">
+    <x>524</x>
+    <y>8</y>
+    <width>25</width>
+    <height>90</height>
+  </character>
+  <character character="50">
+    <x>557</x>
+    <y>8</y>
+    <width>44</width>
+    <height>90</height>
+  </character>
+  <character character="51">
+    <x>609</x>
+    <y>8</y>
+    <width>41</width>
+    <height>90</height>
+  </character>
+  <character character="52">
+    <x>658</x>
+    <y>8</y>
+    <width>51</width>
+    <height>90</height>
+  </character>
+  <character character="53">
+    <x>717</x>
+    <y>8</y>
+    <width>40</width>
+    <height>90</height>
+  </character>
+  <character character="54">
+    <x>765</x>
+    <y>8</y>
+    <width>45</width>
+    <height>90</height>
+  </character>
+  <character character="55">
+    <x>818</x>
+    <y>8</y>
+    <width>46</width>
+    <height>90</height>
+  </character>
+  <character character="56">
+    <x>872</x>
+    <y>8</y>
+    <width>46</width>
+    <height>90</height>
+  </character>
+  <character character="57">
+    <x>926</x>
+    <y>8</y>
+    <width>45</width>
+    <height>90</height>
   </character>
   <character character="32">
-    <x>505</x>
+    <x>979</x>
     <y>8</y>
     <width>33</width>
-    <height>68</height>
+    <height>90</height>
   </character>
 </fontMetrics>

@@ -17,9 +17,9 @@ namespace PenguinShuffle.SubLayoutViews
             AssetManager = assetManager;
 
 
-            Cloud1Path = new CloudPath((mainLayer, x, y) => mainLayer.DrawImage(AssetManager.GetImage(Images.Layouts.Cloud1), x, y));
-            Cloud2Path = new CloudPath((mainLayer, x, y) => mainLayer.DrawImage(AssetManager.GetImage(Images.Layouts.Cloud2), x, y));
-            Cloud3Path = new CloudPath((mainLayer, x, y) => mainLayer.DrawImage(AssetManager.GetImage(Images.Layouts.Cloud3), x, y));
+            Cloud1Path = new CloudPath((mainLayer, x, y) => mainLayer.DrawImage(Assets.Images.Layouts.Cloud1, x, y));
+            Cloud2Path = new CloudPath((mainLayer, x, y) => mainLayer.DrawImage(Assets.Images.Layouts.Cloud2, x, y));
+            Cloud3Path = new CloudPath((mainLayer, x, y) => mainLayer.DrawImage(Assets.Images.Layouts.Cloud3, x, y));
 
             Cloud1Path.Start();
             Cloud2Path.Start();
@@ -63,11 +63,11 @@ namespace PenguinShuffle.SubLayoutViews
                 {
                     case BgSlidingState.Left:
                         mainLayer.Translate(0, 0);
-                        mainLayer.DrawImage(AssetManager.GetImage(Images.Layouts.MainBG), 0, 0);
+                        mainLayer.DrawImage(Assets.Images.Layouts.CloudlessMainBg, 0, 0);
                         break;
                     case BgSlidingState.Right:
                         mainLayer.Translate(-384, 0);
-                        mainLayer.DrawImage(AssetManager.GetImage(Images.Layouts.MainBG), 0, 0);
+                        mainLayer.DrawImage(Assets.Images.Layouts.CloudlessMainBg, 0, 0);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -96,7 +96,7 @@ namespace PenguinShuffle.SubLayoutViews
                 .OnRender((layer, x, y) =>
                 {
                     layer.Translate(x, 0);
-                    layer.DrawImage(AssetManager.GetImage(Images.Layouts.MainBG), 0, 0);
+                    layer.DrawImage(Assets.Images.Layouts.CloudlessMainBg, 0, 0);
                 })
                 .OnComplete(() =>
                 {
@@ -116,7 +116,7 @@ namespace PenguinShuffle.SubLayoutViews
                 .OnRender((layer, x, y) =>
                 {
                     layer.Translate(x, 0);
-                    layer.DrawImage(AssetManager.GetImage(Images.Layouts.MainBG), 0, 0);
+                    layer.DrawImage(Assets.Images.Layouts.CloudlessMainBg, 0, 0);
                 })
                 .OnComplete(() =>
                 {

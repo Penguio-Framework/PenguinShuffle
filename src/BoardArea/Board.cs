@@ -186,11 +186,11 @@ namespace PenguinShuffle.BoardArea
             layer.Save();
 
 
-            var bg = AssetManager.GetImage(Images.Layouts.GameBackground);
+            var bg = Assets.Images.Layouts.GameBackground;
             layer.Translate(BoardConstants.SideOffset, BoardConstants.TopOffset);
             layer.DrawImage(bg, 0, 0, BoardConstants.SquareSize * BoardConstants.SquareWidth, BoardConstants.SquareSize * BoardConstants.SquareHeight);
 
-            var image = AssetManager.GetImage(Images.Board.Box);
+            var image = Assets.Images.Board.Box;
             for (var x = 0; x < BoardConstants.SquareWidth; x++)
             {
                 for (var y = 0; y < BoardConstants.SquareHeight; y++)

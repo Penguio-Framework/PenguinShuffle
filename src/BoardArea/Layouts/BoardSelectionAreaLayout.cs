@@ -29,13 +29,13 @@ namespace PenguinShuffle.BoardArea.Layouts
             CharacterAnimations = new Dictionary<int, AnimatedCharacterSubLayout>();
             for (int i = 1; i <= 6; i++)
             {
-                CharacterAnimations.Add(i, new AnimatedCharacterSubLayout(AssetManager,Game, i));
+                CharacterAnimations.Add(i, new AnimatedCharacterSubLayout(AssetManager, Game, i));
             }
 
         }
 
         public Dictionary<int, AnimatedCharacterSubLayout> CharacterAnimations;
-         
+
 
 
         public Game Game { get; set; }
@@ -135,7 +135,7 @@ namespace PenguinShuffle.BoardArea.Layouts
                         if (x == State.CurrentCharacter.X && y == State.CurrentCharacter.Y)
                         {
                             MainLayer.DrawImage(
-                                AssetManager.GetImage(Images.Characters.Box, State.CurrentCharacter.CharacterNumber + 1),
+                                Assets.Images.Character.Box.CharacterBox[ State.CurrentCharacter.CharacterNumber + 1],
                                 State.CurrentCharacter.X * BoardConstants.SquareSize + BoardConstants.SquareSize / 2,
                                 State.CurrentCharacter.Y * BoardConstants.SquareSize + BoardConstants.SquareSize / 2,
                                 BoardConstants.SquareSize,
@@ -147,7 +147,7 @@ namespace PenguinShuffle.BoardArea.Layouts
                         if (State.CurrentCharacter.Y >= BoardConstants.SquareHeight / 2 && x == State.CurrentCharacter.X && y == State.CurrentCharacter.Y + 1)
                         {
                             MainLayer.DrawImage(
-                                AssetManager.GetImage(Images.Characters.Arrow, State.CurrentCharacter.CharacterNumber + 1),
+                                Assets.Images.Character.Arrow.PlaceCharacterArrow[State.CurrentCharacter.CharacterNumber + 1],
                                 State.CurrentCharacter.X * BoardConstants.SquareSize + BoardConstants.SquareSize / 2,
                                 (State.CurrentCharacter.Y - 1) * BoardConstants.SquareSize + BoardConstants.SquareSize / 2,
                                 BoardConstants.SquareSize,
@@ -161,7 +161,7 @@ namespace PenguinShuffle.BoardArea.Layouts
                             MainLayer.Save();
                             MainLayer.SetDrawingEffects(DrawingEffects.FlipVertically);
                             MainLayer.DrawImage(
-                                AssetManager.GetImage(Images.Characters.Arrow, State.CurrentCharacter.CharacterNumber + 1),
+                                Assets.Images.Character.Arrow.PlaceCharacterArrow[State.CurrentCharacter.CharacterNumber + 1],
                                 State.CurrentCharacter.X * BoardConstants.SquareSize + BoardConstants.SquareSize / 2,
                                 (State.CurrentCharacter.Y + 1) * BoardConstants.SquareSize + BoardConstants.SquareSize / 2,
                                 BoardConstants.SquareSize,
@@ -180,7 +180,7 @@ namespace PenguinShuffle.BoardArea.Layouts
                 case GameSelectionState.PlayerPlace:
                     if (State.CurrentCharacter.X > -1)
                     {
-                        IImage image = AssetManager.GetImage(Images.Characters.StationaryBig, State.CurrentCharacter.CharacterNumber + 1);
+                        IImage image = Assets.Images.Character.Stationary.Big.StationaryCharacters[State.CurrentCharacter.CharacterNumber + 1];
                         if (State.CurrentCharacter.Y < BoardConstants.SquareHeight / 2)
                         {
                             MainLayer.DrawImage(image, State.CurrentCharacter.X * BoardConstants.SquareSize + BoardConstants.SquareSize / 2, (State.CurrentCharacter.Y + 2) * BoardConstants.SquareSize + BoardConstants.SquareSize / 2 + BoardConstants.SquareSize / 2, 180 * Math.PI / 180, true);
@@ -202,9 +202,9 @@ namespace PenguinShuffle.BoardArea.Layouts
 
 
             MainLayer.Restore();
-            if (State.ShowingTutorial > 0 && State.ShowingTutorial <3 )
+            if (State.ShowingTutorial > 0 && State.ShowingTutorial < 3)
             {
-                MainLayer.DrawImage(AssetManager.GetImage(Images.Layouts.Tutorial, State.ShowingTutorial), Positions.TutorialPosition, true);
+                MainLayer.DrawImage(Assets.Images.Layouts.Tutorials.Tutorial[State.ShowingTutorial], Positions.TutorialPosition, true);
             }
 
 
@@ -222,7 +222,7 @@ namespace PenguinShuffle.BoardArea.Layouts
                     if (collide)
                     {
                         if (State.ShowingTutorial > 2)
-                        { 
+                        {
                             State.ShowingTutorial = 0;
                             return false;
                         }
@@ -234,7 +234,7 @@ namespace PenguinShuffle.BoardArea.Layouts
                         if (State.ShowingTutorial == 1 || State.ShowingTutorial == 2)
                         {
                             State.ShowingTutorial++;
-                            Game.Client.PlaySoundEffect(SoundEffects.Click);
+                            Game.Client.PlaySoundEffect(Assets.Sounds.Click);
 
                             return false;
                         }
@@ -262,7 +262,7 @@ namespace PenguinShuffle.BoardArea.Layouts
                     var currentCharacter = ((Character)touchbox.State);
                     if (currentCharacter.Playing)
                     {
-                        Game.Client.PlaySoundEffect(SoundEffects.Click);
+                        Game.Client.PlaySoundEffect(Assets.Sounds.Click);
                         State.CurrentCharacter = null;
                         GameService.ClassicGameState.GameState = GameSelectionState.PlayerChoose;
                         return false;
@@ -270,15 +270,15 @@ namespace PenguinShuffle.BoardArea.Layouts
                     switch (GameService.ClassicGameState.GameState)
                     {
                         case GameSelectionState.PlayerChoose:
-                            
-                            Game.Client.PlaySoundEffect(SoundEffects.Click);
+
+                            Game.Client.PlaySoundEffect(Assets.Sounds.Click);
                             State.CurrentCharacter = currentCharacter;
                             State.CurrentCharacter.X = -1;
                             GameService.ClassicGameState.GameState = GameSelectionState.PlayerPlace;
                             State.CurrentCharacter.Selected = true;
                             break;
                         case GameSelectionState.PlayerPlace:
-                            Game.Client.PlaySoundEffect(SoundEffects.Click);
+                            Game.Client.PlaySoundEffect(Assets.Sounds.Click);
 
                             State.CurrentCharacter.Selected = false;
                             if (State.CurrentCharacter == touchbox.State)
@@ -325,7 +325,7 @@ namespace PenguinShuffle.BoardArea.Layouts
                                 if (State.CurrentCharacter.X == -1) return false;
                                 if (GameService.ClassicGameState.Board.getItemsOnBoard(null, State.CurrentCharacter.X, State.CurrentCharacter.Y).Any(a => a is SolidWallPiece || a is GoalPiece || a is PlayerPiece))
                                     return false;
-                                Game.Client.PlaySoundEffect(SoundEffects.Click);
+                                Game.Client.PlaySoundEffect(Assets.Sounds.Click);
 
                                 State.CurrentCharacter.Selected = false;
 
@@ -406,17 +406,17 @@ namespace PenguinShuffle.BoardArea.Layouts
             MainLayer.Save();
             MainLayer.Translate(0, BoardConstants.TopAreaHeight);
 
-            MainLayer.DrawImage(AssetManager.GetImage(Images.Layouts.StagingArea), 0, 0);
+            MainLayer.DrawImage(Assets.Images.Layouts.StagingArea, 0, 0);
 
-            MainLayer.DrawImage(AssetManager.GetImage(Images.Layouts.TextBoard), Positions.PlaceYourCharacterPosition, true);
+            MainLayer.DrawImage(Assets.Images.Layouts.TextBoard, Positions.PlaceYourCharacterPosition, true);
 
             switch (GameService.ClassicGameState.GameState)
             {
                 case GameSelectionState.PlayerChoose:
-                    MainLayer.DrawString(Renderer.GetFont(Fonts.BabyDoll._72), string.Format("Player {0}, Choose Your Penguin", (State.CurrentPlayerChoosing + 1)), Positions.PlaceYourCharacterPosition);
+                    MainLayer.DrawString((Assets.Fonts.BabyDoll._72), string.Format("Player {0}, Choose Your Penguin", (State.CurrentPlayerChoosing + 1)), Positions.PlaceYourCharacterPosition);
                     break;
                 case GameSelectionState.PlayerPlace:
-                    MainLayer.DrawString(Renderer.GetFont(Fonts.BabyDoll._72), string.Format("Player {0}, Place Your Penguin", (State.CurrentPlayerChoosing + 1)), Positions.PlaceYourCharacterPosition);
+                    MainLayer.DrawString((Assets.Fonts.BabyDoll._72), string.Format("Player {0}, Place Your Penguin", (State.CurrentPlayerChoosing + 1)), Positions.PlaceYourCharacterPosition);
                     break;
             }
 
@@ -427,11 +427,11 @@ namespace PenguinShuffle.BoardArea.Layouts
                 var realCharacterNumber = i + 1;
                 if (character.Playing)
                 {
-                    MainLayer.DrawImage(AssetManager.GetImage(Images.Characters.Placement, realCharacterNumber), Positions.CharacterShadowPosition[i].X, Positions.CharacterShadowPosition[i].Y, true);
+                    MainLayer.DrawImage(Assets.Images.Character.Placement.CharacterPlacement[ realCharacterNumber], Positions.CharacterShadowPosition[i].X, Positions.CharacterShadowPosition[i].Y, true);
                 }
                 else
                 {
-                    MainLayer.DrawImage(AssetManager.GetImage(Images.Characters.Shadow), Positions.CharacterShadowPosition[i].X, Positions.CharacterShadowPosition[i].Y, true);
+                    MainLayer.DrawImage(Assets.Images.Character.CharacterShadow, Positions.CharacterShadowPosition[i].X, Positions.CharacterShadowPosition[i].Y, true);
 
 
                     MainLayer.Save();
@@ -451,7 +451,7 @@ namespace PenguinShuffle.BoardArea.Layouts
                     animatedCharacterSubLayout.Render(MainLayer);
                     MainLayer.Restore();
 
-                     
+
                 }
             }
             MainLayer.Restore();
@@ -512,7 +512,7 @@ namespace PenguinShuffle.BoardArea.Layouts
         {
             Layout = layout;
 
-            BackBoxPosition = new Point(BoardConstants.TotalWidth/ 2, 770);
+            BackBoxPosition = new Point(BoardConstants.TotalWidth / 2, 770);
 
             BackBoxSize = new Point(1024, 768);
             BackContinueBoxSize = new Point(BackBoxSize.X / 2 - 1, 250);

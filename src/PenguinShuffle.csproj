@@ -30,7 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Engine">
+    <Reference Include="Engine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Penguio-Framework\Engine\bin\Debug\Engine.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -43,6 +44,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Compile Include="Assets.cs" />
     <Compile Include="BoardArea\Board.cs" />
     <Compile Include="BoardArea\BoardConstants.cs" />
     <Compile Include="BoardArea\BoardUtils.cs" />

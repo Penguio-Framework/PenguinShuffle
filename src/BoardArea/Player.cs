@@ -77,19 +77,19 @@ namespace PenguinShuffle.BoardArea
             switch (AnimateToPosition != null ? AnimateToPosition.Direction : Direction)
             {
                 case Direction.Left:
-                    image = assetManager.GetImage(Images.Characters.Stationary, PlayerNumber);
+                    image = Assets.Images.Character.Stationary.Small.StationaryCharacters[ PlayerNumber];
                     layer.DrawImage(image, posX, posY, 90*Math.PI/180, BoardConstants.SquareSize, BoardConstants.SquareSize, true);
                     break;
                 case Direction.Right:
-                    image = assetManager.GetImage(Images.Characters.Stationary, PlayerNumber);
+                    image = Assets.Images.Character.Stationary.Small.StationaryCharacters[PlayerNumber];
                     layer.DrawImage(image, posX, posY, 270*Math.PI/180, BoardConstants.SquareSize, BoardConstants.SquareSize, true);
                     break;
                 case Direction.Top:
-                    image = assetManager.GetImage(Images.Characters.Sliding, PlayerNumber);
+                    image = Assets.Images.Character.Sliding.SlidingCharacters[PlayerNumber];
                     layer.DrawImage(image, posX, posY, BoardConstants.SquareSize, BoardConstants.SquareSize, true);
                     break;
                 case Direction.Bottom:
-                    image = assetManager.GetImage(Images.Characters.Stationary, PlayerNumber);
+                    image = Assets.Images.Character.Stationary.Small.StationaryCharacters[PlayerNumber];
                     layer.DrawImage(image, posX, posY, BoardConstants.SquareSize, BoardConstants.SquareSize, true);
                     break;
                 default:

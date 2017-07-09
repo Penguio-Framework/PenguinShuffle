@@ -130,7 +130,7 @@ namespace PenguinShuffle.SettingsArea
             {
                 if (State.MenuAnimation.Completed)
                 {
-                    game.Client.PlaySoundEffect(SoundEffects.Click);
+                    game.Client.PlaySoundEffect(Assets.Sounds.Click);
                     GameService.CloudSubLayout.SlideLeft();
                     State.ScreenManager.ChangeToLanding();
                 }
@@ -157,7 +157,7 @@ namespace PenguinShuffle.SettingsArea
             mainLayer.Save();
             mainLayer.Translate(0, -yOffset);
             mainLayer.DrawRectangle(new Color(37, 170, 255), State.Positions.StartGameRect);
-            mainLayer.DrawString(Renderer.GetFont(Fonts.BabyDoll._120), "Start Game", State.Positions.StartGameRect.Center);
+            mainLayer.DrawString((Assets.Fonts.BabyDoll._120), "Start Game", State.Positions.StartGameRect.Center);
             mainLayer.Restore();
         }
 
@@ -167,16 +167,16 @@ namespace PenguinShuffle.SettingsArea
             mainLayer.Translate(-xOffset, 0);
 
 
-            //            mainLayer.DrawImage(AssetManager.GetImage(Images.Layouts.TextBoard), State.Positions.ModePosition, true);
-            //            mainLayer.DrawString(Renderer.GetFont(Fonts.BabyDoll._100), "Mode", State.Positions.ModePosition);
+            //            mainLayer.DrawImage(AssetManager.GetImage(Assets.Images.Layouts.TextBoard), State.Positions.ModePosition, true);
+            //            mainLayer.DrawString((Assets.Fonts.BabyDoll._100), "Mode", State.Positions.ModePosition);
 
 
             switch (State.SelectedMode)
             {
                 case GameMode.Classic:
 
-                    mainLayer.DrawImage(AssetManager.GetImage(Images.Layouts.TextBoard), State.Positions.NumberOfPlayersPosition, true);
-                    mainLayer.DrawString(Renderer.GetFont(Fonts.BabyDoll._100), "Number Of Players", State.Positions.NumberOfPlayersPosition);
+                    mainLayer.DrawImage(Assets.Images.Layouts.TextBoard, State.Positions.NumberOfPlayersPosition, true);
+                    mainLayer.DrawString((Assets.Fonts.BabyDoll._100), "Number Of Players", State.Positions.NumberOfPlayersPosition);
 
                     break;
                 case GameMode.Puzzle:
@@ -190,14 +190,14 @@ namespace PenguinShuffle.SettingsArea
             mainLayer.Translate(xOffset, 0);
 
             /*
-                        mainLayer.DrawImage(AssetManager.GetImage(Images.Layouts.ModeButton), State.Positions.ModesButtonPosition, true);
+                        mainLayer.DrawImage(AssetManager.GetImage(Assets.Images.Layouts.ModeButton), State.Positions.ModesButtonPosition, true);
                         switch (State.SelectedMode)
                         {
                             case GameMode.Classic:
-                                mainLayer.DrawString(Renderer.GetFont(Fonts.BabyDoll._100), "Classic", State.Positions.ModesButtonPosition, Images.Layouts.DarkFontColor);
+                                mainLayer.DrawString((Assets.Fonts.BabyDoll._100), "Classic", State.Positions.ModesButtonPosition, Images.Layouts.DarkFontColor);
                                 break;
                             case GameMode.Puzzle:
-                                mainLayer.DrawString(Renderer.GetFont(Fonts.BabyDoll._100), "Puzzle", State.Positions.ModesButtonPosition, Images.Layouts.DarkFontColor);
+                                mainLayer.DrawString((Assets.Fonts.BabyDoll._100), "Puzzle", State.Positions.ModesButtonPosition, Images.Layouts.DarkFontColor);
                                 break;
                             default:
                                 throw new ArgumentOutOfRangeException();
@@ -218,20 +218,20 @@ namespace PenguinShuffle.SettingsArea
 
                         if (i > 1 && !HasMultiplayer)
                         {
-                            mainLayer.DrawImage(AssetManager.GetImage(Images.Layouts.PlayerLocked), numberOfPlayersPosition, true);
-                            mainLayer.DrawString(Renderer.GetFont(Fonts.BabyDoll._120), i.ToString(), numberOfPlayersPosition, Images.Layouts.DarkFontColor);
+                            mainLayer.DrawImage(Assets.Images.Layouts.PlayerLocked, numberOfPlayersPosition, true);
+                            mainLayer.DrawString((Assets.Fonts.BabyDoll._120), i.ToString(), numberOfPlayersPosition, Colors.DarkFontColor);
                         }
                         else
                         {
                             if (i == State.SelectedNumberOfPlayers)
                             {
-                                mainLayer.DrawImage(AssetManager.GetImage(Images.Layouts.PlayerSelectionButton), numberOfPlayersPosition, true);
-                                mainLayer.DrawString(Renderer.GetFont(Fonts.BabyDoll._120), i.ToString(), numberOfPlayersPosition);
+                                mainLayer.DrawImage(Assets.Images.Layouts.PlayerSelected, numberOfPlayersPosition, true);
+                                mainLayer.DrawString((Assets.Fonts.BabyDoll._120), i.ToString(), numberOfPlayersPosition);
                             }
                             else
                             {
-                                mainLayer.DrawImage(AssetManager.GetImage(Images.Layouts.PlayerUnselectedButton), numberOfPlayersPosition, true);
-                                mainLayer.DrawString(Renderer.GetFont(Fonts.BabyDoll._120), i.ToString(), numberOfPlayersPosition, Images.Layouts.DarkFontColor);
+                                mainLayer.DrawImage(Assets.Images.Layouts.PlayerUnselected, numberOfPlayersPosition, true);
+                                mainLayer.DrawString((Assets.Fonts.BabyDoll._120), i.ToString(), numberOfPlayersPosition, Colors.DarkFontColor);
                             }
                         }
                     }
@@ -243,8 +243,7 @@ namespace PenguinShuffle.SettingsArea
             }
 
 
-            mainLayer.DrawImage(AssetManager.GetImage(Images.Layouts.BackButton), State.Positions.BackPosition);
-
+            mainLayer.DrawImage(Assets.Images.Layouts.BackButton, State.Positions.BackPosition);
 
             mainLayer.Restore();
         }
@@ -258,7 +257,7 @@ namespace PenguinShuffle.SettingsArea
                 case TouchType.TouchDown:
                     if (State.MenuAnimation.Completed)
                     {
-                        game.Client.PlaySoundEffect(SoundEffects.Click);
+                        game.Client.PlaySoundEffect(Assets.Sounds.Click);
                         State.StartClicked = true;
                         State.MenuAnimation.Reverse();
                         State.StartGameAnimation.Reverse();
@@ -277,7 +276,7 @@ namespace PenguinShuffle.SettingsArea
                 case TouchType.TouchDown:
                     if (State.MenuAnimation.Completed)
                     {
-                        game.Client.PlaySoundEffect(SoundEffects.Click);
+                        game.Client.PlaySoundEffect(Assets.Sounds.Click);
                         State.SelectedMode = (State.SelectedMode == GameMode.Classic) ? GameMode.Puzzle : GameMode.Classic;
                     }
                     break;
@@ -293,7 +292,7 @@ namespace PenguinShuffle.SettingsArea
                 case TouchType.TouchDown:
                     if (State.MenuAnimation.Completed)
                     {
-                        game.Client.PlaySoundEffect(SoundEffects.Click);
+                        game.Client.PlaySoundEffect(Assets.Sounds.Click);
 
                         var selectedNumberOfPlayers = (int)touchBox.State;
                         if (selectedNumberOfPlayers == 1)

@@ -71,25 +71,25 @@ namespace PenguinShuffle.BoardArea
             switch (Direction)
             {
                 case Direction.Left:
-                    wall = assetManager.GetImage(Images.Tiles.WallVertical);
+                    wall = Assets.Images.Tiles.WallVertical;
                     xPos = -BoardConstants.SquareSize/2d;
                     width = wall.Width;
                     height = BoardConstants.SquareSize;
                     break;
                 case Direction.Right:
-                    wall = assetManager.GetImage(Images.Tiles.WallVertical);
+                    wall = Assets.Images.Tiles.WallVertical;
                     xPos = +BoardConstants.SquareSize/2d;
                     width = wall.Width;
                     height = BoardConstants.SquareSize;
                     break;
                 case Direction.Top:
-                    wall = assetManager.GetImage(Images.Tiles.WallHorizontal);
+                    wall = Assets.Images.Tiles.WallHorizontal;
                     yPos = -BoardConstants.SquareSize/2d;
                     width = BoardConstants.SquareSize;
                     height = wall.Height;
                     break;
                 case Direction.Bottom:
-                    wall = assetManager.GetImage(Images.Tiles.WallHorizontal);
+                    wall = Assets.Images.Tiles.WallHorizontal;
                     yPos = +BoardConstants.SquareSize/2d;
                     width = BoardConstants.SquareSize;
                     height = wall.Height;

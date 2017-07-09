@@ -35,7 +35,7 @@ namespace PenguinShuffle.SubLayoutViews
         public void Render(ILayer mainLayer)
         {
             mainLayer.Save();
-            mainLayer.DrawImage(AssetManager.GetImage(game.Client.SoundEnabled ? Images.Layouts.SoundOn : Images.Layouts.SoundOff), SoundToggleButtonPosition, true);
+            mainLayer.DrawImage(game.Client.SoundEnabled ? Assets.Images.Layouts.SoundOnButton : Assets.Images.Layouts.SoundOffButton, SoundToggleButtonPosition, true);
 
             mainLayer.Restore();
         }
@@ -49,7 +49,7 @@ namespace PenguinShuffle.SubLayoutViews
             if (eventtype == TouchType.TouchDown)
             {
                 game.Client.SoundEnabled = !game.Client.SoundEnabled;
-                game.Client.PlaySoundEffect(SoundEffects.Click);
+                game.Client.PlaySoundEffect(Assets.Sounds.Click);
                 return false;
             }
             return true;

@@ -1,69 +1,117 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <fontMetrics file="a">
-  <character character="48">
+  <character character="36">
     <x>8</x>
     <y>8</y>
+    <width>80</width>
+    <height>163</height>
+  </character>
+  <character character="78">
+    <x>96</x>
+    <y>8</y>
+    <width>150</width>
+    <height>163</height>
+  </character>
+  <character character="85">
+    <x>254</x>
+    <y>8</y>
+    <width>125</width>
+    <height>163</height>
+  </character>
+  <character character="77">
+    <x>387</x>
+    <y>8</y>
+    <width>160</width>
+    <height>163</height>
+  </character>
+  <character character="66">
+    <x>555</x>
+    <y>8</y>
+    <width>120</width>
+    <height>163</height>
+  </character>
+  <character character="69">
+    <x>683</x>
+    <y>8</y>
     <width>100</width>
-    <height>126</height>
+    <height>163</height>
+  </character>
+  <character character="82">
+    <x>791</x>
+    <y>8</y>
+    <width>104</width>
+    <height>163</height>
+  </character>
+  <character character="83">
+    <x>903</x>
+    <y>8</y>
+    <width>71</width>
+    <height>163</height>
+  </character>
+  <character character="48">
+    <x>982</x>
+    <y>8</y>
+    <width>100</width>
+    <height>163</height>
   </character>
   <character character="49">
-    <x>116</x>
+    <x>1090</x>
     <y>8</y>
     <width>50</width>
-    <height>126</height>
+    <height>163</height>
   </character>
   <character character="50">
-    <x>174</x>
+    <x>1148</x>
     <y>8</y>
     <width>88</width>
-    <height>126</height>
+    <height>163</height>
   </character>
   <character character="51">
-    <x>270</x>
+    <x>1244</x>
     <y>8</y>
     <width>84</width>
-    <height>126</height>
+    <height>163</height>
   </character>
   <character character="52">
-    <x>362</x>
+    <x>1336</x>
     <y>8</y>
     <width>73</width>
-    <height>126</height>
+    <height>163</height>
   </character>
   <character character="53">
-    <x>443</x>
+    <x>1417</x>
     <y>8</y>
     <width>88</width>
-    <height>126</height>
+    <height>163</height>
   </character>
   <character character="54">
-    <x>539</x>
+    <x>1513</x>
     <y>8</y>
     <width>108</width>
-    <height>126</height>
+    <height>163</height>
   </character>
   <character character="55">
-    <x>655</x>
+    <x>1629</x>
     <y>8</y>
     <width>90</width>
-    <height>126</height>
+    <height>163</height>
   </character>
   <character character="56">
-    <x>753</x>
+    <x>1727</x>
     <y>8</y>
     <width>83</width>
-    <height>126</height>
+    <height>163</height>
   </character>
   <character character="57">
-    <x>844</x>
+    <x>1818</x>
     <y>8</y>
     <width>85</width>
-    <height>126</height>
+    <height>163</height>
   </character>
   <character character="32">
-    <x>937</x>
+    <x>1911</x>
     <y>8</y>
     <width>80</width>
-    <height>126</height>
+    <height>163</height>
   </character>
 </fontMetrics>

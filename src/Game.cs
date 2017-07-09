@@ -123,103 +123,104 @@ namespace PenguinShuffle
 
         public void LoadAssets(IRenderer renderer)
         {
-            Client.SetCustomLetterbox(AssetManager.CreateImage(Images.Layouts.Letterbox, "layouts/gray-bg"));
+            Assets.LoadAssets(renderer, AssetManager);
+            Client.SetCustomLetterbox(Assets.Images.Layouts.GrayBg);
 
+/*
+            AssetManager.CreateImage(Assets.Images.Layouts.PenguinLogo, "layouts/penguin-logo");
+            AssetManager.CreateImage(Assets.Images.Layouts.ShuffleLogo, "layouts/shuffle-logo");
+            AssetManager.CreateImage(Assets.Images.Layouts.MainBG, "layouts/cloudless-main-bg");
+            AssetManager.CreateImage(Assets.Images.Layouts.Cloud1, "layouts/cloud1");
+            AssetManager.CreateImage(Assets.Images.Layouts.Cloud2, "layouts/cloud2");
+            AssetManager.CreateImage(Assets.Images.Layouts.Cloud3, "layouts/cloud3");
 
-            AssetManager.CreateImage(Images.Layouts.PenguinLogo, "layouts/penguin-logo");
-            AssetManager.CreateImage(Images.Layouts.ShuffleLogo, "layouts/shuffle-logo");
-            AssetManager.CreateImage(Images.Layouts.MainBG, "layouts/cloudless-main-bg");
-            AssetManager.CreateImage(Images.Layouts.Cloud1, "layouts/cloud1");
-            AssetManager.CreateImage(Images.Layouts.Cloud2, "layouts/cloud2");
-            AssetManager.CreateImage(Images.Layouts.Cloud3, "layouts/cloud3");
+            AssetManager.CreateImage(Assets.Images.Layouts.HelperImage1, "layouts/helper-image-1");
+            AssetManager.CreateImage(Assets.Images.Layouts.HelperImage2, "layouts/helper-image-2");
 
-            AssetManager.CreateImage(Images.Layouts.HelperImage1, "layouts/helper-image-1");
-            AssetManager.CreateImage(Images.Layouts.HelperImage2, "layouts/helper-image-2");
-
-            AssetManager.CreateImage(Images.Layouts.PlayButton, "layouts/play-button");
-            AssetManager.CreateImage(Images.Layouts.TextBoard, "layouts/text-board");
+            AssetManager.CreateImage(Assets.Images.Layouts.PlayButton, "layouts/play-button");
+            AssetManager.CreateImage(Assets.Images.Layouts.TextBoard, "layouts/text-board");
 
             Songs.Menu = AssetManager.CreateSong("Menu", "songs/menu-music");
             Songs.Ocean = AssetManager.CreateSong("Ocean", "songs/ocean-background");
-            SoundEffects.Slide = AssetManager.CreateSoundEffect("Slide", "sounds/slide");
-            SoundEffects.Click = AssetManager.CreateSoundEffect("Click", "sounds/click");
-            SoundEffects.TimeTick = AssetManager.CreateSoundEffect("TimeTick", "sounds/time-tick");
+            Assets.Sounds.Slide = AssetManager.CreateSoundEffect("Slide", "sounds/slide");
+            Assets.Sounds.Click = AssetManager.CreateSoundEffect("Click", "sounds/click");
+            Assets.Sounds.TimeTick = AssetManager.CreateSoundEffect("TimeTick", "sounds/time-tick");
             SoundEffects.TimeDing = AssetManager.CreateSoundEffect("TimeDing", "sounds/time-ding");
 
-            AssetManager.CreateFont(Fonts.BabyDoll._100, "fonts/BabyDoll/BabyDoll-100pt");
-            AssetManager.CreateFont(Fonts.BabyDoll._36, "fonts/BabyDoll/BabyDoll-36pt");
-            AssetManager.CreateFont(Fonts.BabyDoll._48, "fonts/BabyDoll/BabyDoll-48pt");
-            AssetManager.CreateFont(Fonts.BabyDoll._60, "fonts/BabyDoll/BabyDoll-60pt");
-            AssetManager.CreateFont(Fonts.BabyDoll._72, "fonts/BabyDoll/BabyDoll-72pt");
-            AssetManager.CreateFont(Fonts.BabyDoll._90, "fonts/BabyDoll/BabyDoll-90pt");
-            AssetManager.CreateFont(Fonts.BabyDoll._120, "fonts/BabyDoll/BabyDoll-120pt");
-            AssetManager.CreateFont(Fonts.BabyDoll._130, "fonts/BabyDoll/BabyDoll-130pt");
-            AssetManager.CreateFont(Fonts.BabyDoll._240, "fonts/BabyDoll/BabyDoll-240pt");
+            AssetManager.CreateFont(Assets.Fonts.BabyDoll._100, "fonts/BabyDoll/BabyDoll-100pt");
+            AssetManager.CreateFont(Assets.Fonts.BabyDoll._36, "fonts/BabyDoll/BabyDoll-36pt");
+            AssetManager.CreateFont(Assets.Fonts.BabyDoll._48, "fonts/BabyDoll/BabyDoll-48pt");
+            AssetManager.CreateFont(Assets.Fonts.BabyDoll._60, "fonts/BabyDoll/BabyDoll-60pt");
+            AssetManager.CreateFont(Assets.Fonts.BabyDoll._72, "fonts/BabyDoll/BabyDoll-72pt");
+            AssetManager.CreateFont(Assets.Fonts.BabyDoll._90, "fonts/BabyDoll/BabyDoll-90pt");
+            AssetManager.CreateFont(Assets.Fonts.BabyDoll._120, "fonts/BabyDoll/BabyDoll-120pt");
+            AssetManager.CreateFont(Assets.Fonts.BabyDoll._130, "fonts/BabyDoll/BabyDoll-130pt");
+            AssetManager.CreateFont(Assets.Fonts.BabyDoll._240, "fonts/BabyDoll/BabyDoll-240pt");
 
-            AssetManager.CreateFont(Fonts.MyriadPro._100, "fonts/Myriad Pro/Myriad Pro-100pt");
-
-
-            AssetManager.CreateImage(Images.About.Bubble, "about/about-bubble");
-            AssetManager.CreateImage(Images.About.Penguin, "about/main-penguin");
-            AssetManager.CreateImage(Images.About.Contact, "about/about-contact");
-            AssetManager.CreateImage(Images.About.Rate, "about/about-rate");
-
-            AssetManager.CreateImage(Images.Layouts.Tutorial, Images.TutorialArguments, "layouts/tutorial{0}");
-            AssetManager.CreateImage(Images.Layouts.TutorialButton, "layouts/about-button");
-
-            AssetManager.CreateImage(Images.Layouts.SoundOff, "layouts/sound-off-button");
-            AssetManager.CreateImage(Images.Layouts.SoundOn, "layouts/sound-on-button");
-            AssetManager.CreateImage(Images.Layouts.Arrow, "layouts/arrow");
-            AssetManager.CreateImage(Images.Layouts.BackButton, "layouts/back-button");
-            AssetManager.CreateImage(Images.Layouts.ModeButton, "layouts/mode-button");
-            AssetManager.CreateImage(Images.Layouts.PlayerSelectionButton, "layouts/player-selected");
-            AssetManager.CreateImage(Images.Layouts.PlayerUnselectedButton, "layouts/player-unselected");
-            AssetManager.CreateImage(Images.Layouts.StagingArea, "layouts/staging-area");
-            AssetManager.CreateImage(Images.Layouts.NumberSelectionBar, "layouts/numberSelectBar");
-            AssetManager.CreateImage(Images.Layouts.PlayerLocked, "layouts/player-locked");
-
-            AssetManager.CreateImage(Images.Board.Box, "board/box");
-            AssetManager.CreateImage(Images.Layouts.GameBackground, "layouts/gameBackground");
+            AssetManager.CreateFont(Assets.Fonts.MyriadPro._100, "fonts/Myriad Pro/Myriad Pro-100pt");
 
 
-            AssetManager.CreateImage(Images.Characters.Arrow, Images.CharacterArguments, "character/arrow/place-character-arrow-0{0}");
-            AssetManager.CreateImage(Images.Characters.BannersBig, Images.CharacterArguments, "character/banners/big/{0}-long-banner");
-            AssetManager.CreateImage(Images.Characters.BannersSmall, Images.CharacterArguments, "character/banners/small/{0}-short-banner");
-            AssetManager.CreateImage(Images.Characters.Placement, Images.CharacterArguments, "character/placement/{0}-character-placement");
-            AssetManager.CreateImage(Images.Characters.Sliding, Images.CharacterArguments, "character/sliding/sliding-characters-0{0}");
-            AssetManager.CreateImage(Images.Characters.LabelBox, Images.CharacterArguments, "character/labelBox/character.{0}.box");
-            AssetManager.CreateImage(Images.Characters.Box, Images.CharacterArguments, "character/box/character.{0}.box");
-            AssetManager.CreateImage(Images.Characters.StationaryBig, Images.CharacterArguments, "character/stationary/big/stationary-characters-0{0}");
-            AssetManager.CreateImage(Images.Characters.Stationary, Images.CharacterArguments, "character/stationary/small/stationary-characters-0{0}");
-            AssetManager.CreateImage(Images.Characters.Shadow, "character/character-shadow");
+            AssetManager.CreateImage(Assets.Images.About.Bubble, "about/about-bubble");
+            AssetManager.CreateImage(Assets.Images.About.Penguin, "about/main-penguin");
+            AssetManager.CreateImage(Assets.Images.About.Contact, "about/about-contact");
+            AssetManager.CreateImage(Assets.Images.About.Rate, "about/about-rate");
 
-            AssetManager.CreateImage(Images.Characters.StandingAnimated1, Images.CharacterArguments, "character/animations/{0}/characters-animated-1");
-            AssetManager.CreateImage(Images.Characters.StandingAnimated2, Images.CharacterArguments, "character/animations/{0}/characters-animated-2");
-            AssetManager.CreateImage(Images.Characters.StandingAnimated3, Images.CharacterArguments, "character/animations/{0}/characters-animated-3");
-            AssetManager.CreateImage(Images.Characters.StandingAnimated4, Images.CharacterArguments, "character/animations/{0}/characters-animated-4");
-            AssetManager.CreateImage(Images.Characters.StandingAnimated5, Images.CharacterArguments, "character/animations/{0}/characters-animated-5");
-            AssetManager.CreateImage(Images.Characters.StandingAnimated6, Images.CharacterArguments, "character/animations/{0}/characters-animated-6");
-            AssetManager.CreateImage(Images.Characters.StandingAnimated7, Images.CharacterArguments, "character/animations/{0}/characters-animated-7");
-            AssetManager.CreateImage(Images.Characters.StandingAnimated8, Images.CharacterArguments, "character/animations/{0}/characters-animated-8");
+            AssetManager.CreateImage(Assets.Images.Layouts.Tutorial, Images.TutorialArguments, "layouts/tutorial{0}");
+            AssetManager.CreateImage(Assets.Images.Layouts.TutorialButton, "layouts/about-button");
 
+            AssetManager.CreateImage(Assets.Images.Layouts.SoundOff, "layouts/sound-off-button");
+            AssetManager.CreateImage(Assets.Images.Layouts.SoundOn, "layouts/sound-on-button");
+            AssetManager.CreateImage(Assets.Images.Layouts.Arrow, "layouts/arrow");
+            AssetManager.CreateImage(Assets.Images.Layouts.BackButton, "layouts/back-button");
+            AssetManager.CreateImage(Assets.Images.Layouts.ModeButton, "layouts/mode-button");
+            AssetManager.CreateImage(Assets.Images.Layouts.PlayerSelectionButton, "layouts/player-selected");
+            AssetManager.CreateImage(Assets.Images.Layouts.PlayerUnselectedButton, "layouts/player-unselected");
+            AssetManager.CreateImage(Assets.Images.Layouts.StagingArea, "layouts/staging-area");
+            AssetManager.CreateImage(Assets.Images.Layouts.NumberSelectionBar, "layouts/numberSelectBar");
+            AssetManager.CreateImage(Assets.Images.Layouts.PlayerLocked, "layouts/player-locked");
 
-
-            AssetManager.CreateImage(Images.Tiles.Big, Images.CharacterArguments, "tiles/big/fish-tiles-0{0}");
-            AssetManager.CreateImage(Images.Tiles.Small, Images.CharacterArguments, "tiles/small/fish-tiles-0{0}");
-            AssetManager.CreateImage(Images.Tiles.Extra, "tiles/fish-tiles-extra");
-
-            AssetManager.CreateImage(Images.Tiles.WallHorizontal, "tiles/wall-horizontal");
-            AssetManager.CreateImage(Images.Tiles.WallVertical, "tiles/wall-vertical");
-            AssetManager.CreateImage(Images.Tiles.WallSolid, "tiles/wall-solid");
-            //            AssetManager.CreateImage(Images.Tiles.WallSolidSides, Images.SolidWallArguments, "tiles/solid/solidWall.{0}");
+            AssetManager.CreateImage(Assets.Images.Board.Box, "board/box");
+            AssetManager.CreateImage(Assets.Images.Layouts.GameBackground, "layouts/gameBackground");
 
 
-            AssetManager.CreateImage(Images.Cards.Big, Images.CharacterArguments, "cards/big/cards-0{0}");
-            AssetManager.CreateImage(Images.Cards.Small, Images.CharacterArguments, "cards/small/cards-0{0}");
-            AssetManager.CreateImage(Images.Cards.Character, Images.CharacterArguments, "cards/character/cards-0{0}");
-            AssetManager.CreateImage(Images.Cards.All, "cards/cards-all");
-            AssetManager.CreateImage(Images.Cards.Extra, "cards/cards-extra");
-            AssetManager.CreateImage(Images.Cards.Back, "cards/cards-back");
+            AssetManager.CreateImage(Assets.Images.Character.Arrow, Images.CharacterArguments, "character/arrow/place-character-arrow-0{0}");
+            AssetManager.CreateImage(Assets.Images.Character.BannersBig, Images.CharacterArguments, "character/banners/big/{0}-long-banner");
+            AssetManager.CreateImage(Assets.Images.Character.BannersSmall, Images.CharacterArguments, "character/banners/small/{0}-short-banner");
+            AssetManager.CreateImage(Assets.Images.Character.Placement, Images.CharacterArguments, "character/placement/{0}-character-placement");
+            AssetManager.CreateImage(Assets.Images.Character.Sliding, Images.CharacterArguments, "character/sliding/sliding-characters-0{0}");
+            AssetManager.CreateImage(Assets.Images.Character.LabelBox, Images.CharacterArguments, "character/labelBox/character.{0}.box");
+            AssetManager.CreateImage(Assets.Images.Character.Box, Images.CharacterArguments, "character/box/character.{0}.box");
+            AssetManager.CreateImage(Assets.Images.Character.StationaryBig, Images.CharacterArguments, "character/stationary/big/stationary-characters-0{0}");
+            AssetManager.CreateImage(Assets.Images.Character.Stationary, Images.CharacterArguments, "character/stationary/small/stationary-characters-0{0}");
+            AssetManager.CreateImage(Assets.Images.Character.Shadow, "character/character-shadow");
+
+            AssetManager.CreateImage(Assets.Images.Character.StandingAnimated1, Images.CharacterArguments, "character/animations/{0}/characters-animated-1");
+            AssetManager.CreateImage(Assets.Images.Character.StandingAnimated2, Images.CharacterArguments, "character/animations/{0}/characters-animated-2");
+            AssetManager.CreateImage(Assets.Images.Character.StandingAnimated3, Images.CharacterArguments, "character/animations/{0}/characters-animated-3");
+            AssetManager.CreateImage(Assets.Images.Character.StandingAnimated4, Images.CharacterArguments, "character/animations/{0}/characters-animated-4");
+            AssetManager.CreateImage(Assets.Images.Character.StandingAnimated5, Images.CharacterArguments, "character/animations/{0}/characters-animated-5");
+            AssetManager.CreateImage(Assets.Images.Character.StandingAnimated6, Images.CharacterArguments, "character/animations/{0}/characters-animated-6");
+            AssetManager.CreateImage(Assets.Images.Character.StandingAnimated7, Images.CharacterArguments, "character/animations/{0}/characters-animated-7");
+            AssetManager.CreateImage(Assets.Images.Character.StandingAnimated8, Images.CharacterArguments, "character/animations/{0}/characters-animated-8");
+
+
+
+            AssetManager.CreateImage(Assets.Images.Tiles.Big, Images.CharacterArguments, "tiles/big/fish-tiles-0{0}");
+            AssetManager.CreateImage(Assets.Images.Tiles.Small, Images.CharacterArguments, "tiles/small/fish-tiles-0{0}");
+            AssetManager.CreateImage(Assets.Images.Tiles.Extra, "tiles/fish-tiles-extra");
+
+            AssetManager.CreateImage(Assets.Images.Tiles.WallHorizontal, "tiles/wall-horizontal");
+            AssetManager.CreateImage(Assets.Images.Tiles.WallVertical, "tiles/wall-vertical");
+            AssetManager.CreateImage(Assets.Images.Tiles.WallSolid, "tiles/wall-solid");
+            //            AssetManager.CreateImage(Assets.Images.Tiles.WallSolidSides, Images.SolidWallArguments, "tiles/solid/solidWall.{0}");
+
+
+            AssetManager.CreateImage(Assets.Images.Cards.Big, Images.CharacterArguments, "cards/big/cards-0{0}");
+            AssetManager.CreateImage(Assets.Images.Cards.Small, Images.CharacterArguments, "cards/small/cards-0{0}");
+            AssetManager.CreateImage(Assets.Images.Cards.Character, Images.CharacterArguments, "cards/character/cards-0{0}");
+            AssetManager.CreateImage(Assets.Images.Cards.All, "cards/cards-all");
+            AssetManager.CreateImage(Assets.Images.Cards.Extra, "cards/cards-extra");
+            AssetManager.CreateImage(Assets.Images.Cards.Back, "cards/cards-back");*/
         }
     }
 
@@ -237,7 +238,7 @@ namespace PenguinShuffle
             game.GameService.GameMode = gameMode;
 
 
-            game.Client.PlaySong(Songs.Ocean);
+            game.Client.PlaySong(Assets.Songs.OceanBackground);
             switch (gameMode)
             {
                 case GameMode.Classic:
@@ -289,13 +290,17 @@ namespace PenguinShuffle
 
         public void ChangeToLanding()
         {
-            game.Client.PlaySong(Songs.Menu);
+            game.Client.PlaySong(Assets.Songs.MenuMusic);
             game.ScreenManager.ChangeScreen(game.landingScreen);
         }
     }
 }
 
-namespace PenguinShuffle
+public class Colors
+{
+    public static Color DarkFontColor = new Color(109, 110, 113);
+}
+/*namespace PenguinShuffle
 {
     public class Fonts
     {
@@ -407,7 +412,6 @@ namespace PenguinShuffle
 
         public class Layouts
         {
-            public static Color DarkFontColor = new Color(109, 110, 113);
             public static string TutorialButton = Guid.NewGuid().ToString();
             public static string Arrow = Guid.NewGuid().ToString();
             public static string BackButton = Guid.NewGuid().ToString();
@@ -445,4 +449,4 @@ namespace PenguinShuffle
             //            public static string WallSolidSides = Guid.NewGuid().ToString();
         }
     }
-}
+}*/

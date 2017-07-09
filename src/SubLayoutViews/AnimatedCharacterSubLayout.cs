@@ -62,36 +62,10 @@ namespace PenguinShuffle.SubLayoutViews
         private void render(ILayer layer, double posx, double posy, int animationindex, double percent)
         {
             IImage frame;
-            switch (animationindex)
-            {
-                case 0:
-                case 1:
-                    frame = AssetManager.GetImage(Images.Characters.StandingAnimated1, CharacterIndex);
-                    break;
-                case 2:
-                    frame = AssetManager.GetImage(Images.Characters.StandingAnimated2, CharacterIndex);
-                    break;
-                case 3:
-                    frame = AssetManager.GetImage(Images.Characters.StandingAnimated3, CharacterIndex);
-                    break;
-                case 4:
-                    frame = AssetManager.GetImage(Images.Characters.StandingAnimated4, CharacterIndex);
-                    break;
-                case 5:
-                    frame = AssetManager.GetImage(Images.Characters.StandingAnimated5, CharacterIndex);
-                    break;
-                case 6:
-                    frame = AssetManager.GetImage(Images.Characters.StandingAnimated6, CharacterIndex);
-                    break;
-                case 7:
-                    frame = AssetManager.GetImage(Images.Characters.StandingAnimated7, CharacterIndex);
-                    break;
-                case 8:
-                    frame = AssetManager.GetImage(Images.Characters.StandingAnimated8, CharacterIndex);
-                    break;
-                default:
-                    throw new Exception();
-            }
+            if (animationindex == 0)
+                animationindex = 1;
+
+            frame = Assets.Images.Character.Animations.CharactersAnimated[CharacterIndex][animationindex];
 
 
             if (Selected)

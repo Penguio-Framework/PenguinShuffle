@@ -24,7 +24,7 @@ namespace PenguinShuffle.LandingArea
             GameService = gameService;
             Layout = layout;
             AssetManager = game.AssetManager;
-            game.Client.PlaySong(Songs.Menu);
+            game.Client.PlaySong(Assets.Songs.MenuMusic);
         }
 
         public LandingAreaLayoutState State { get; set; }
@@ -66,8 +66,8 @@ namespace PenguinShuffle.LandingArea
 
             mainLayer.Save();
 
-            IImage logoImage = AssetManager.GetImage(Images.Layouts.PenguinLogo);
-            IImage shuffleImage = AssetManager.GetImage(Images.Layouts.ShuffleLogo);
+            IImage logoImage = Assets.Images.Layouts.PenguinLogo;
+            IImage shuffleImage = Assets.Images.Layouts.ShuffleLogo;
 
             if (PenguinLogoAnimation.Completed)
             {
@@ -97,24 +97,24 @@ namespace PenguinShuffle.LandingArea
             {
                 if (State.ShowingTutorial > 0)
                 {
-                    mainLayer.DrawImage(AssetManager.GetImage(Images.Layouts.Tutorial, State.ShowingTutorial), Positions.TutorialPosition, true);
+                    mainLayer.DrawImage(Assets.Images.Layouts.Tutorials.Tutorial[State.ShowingTutorial], Positions.TutorialPosition, true);
                 }
                 else
                 {
                     if (!State.StartClicked)
                     {
-                        mainLayer.DrawImage(AssetManager.GetImage(Images.Layouts.PlayButton), Positions.StartLocation, true);
+                        mainLayer.DrawImage(Assets.Images.Layouts.PlayButton, Positions.StartLocation, true);
                     }
                 }
             }
 
             if (State.ShowingTutorial > 0)
             {
-                mainLayer.DrawImage(AssetManager.GetImage(Images.Layouts.Tutorial, State.ShowingTutorial), Positions.TutorialPosition, true);
+                mainLayer.DrawImage(Assets.Images.Layouts.Tutorials.Tutorial[State.ShowingTutorial], Positions.TutorialPosition, true);
             }
             else
             {
-                mainLayer.DrawImage(AssetManager.GetImage(Images.Layouts.TutorialButton), Positions.TutorialButtonPosition, true);
+                mainLayer.DrawImage(Assets.Images.Layouts.AboutButton, Positions.TutorialButtonPosition, true);
 
                 if (State.StartClicked)
                 {
@@ -173,8 +173,8 @@ namespace PenguinShuffle.LandingArea
 
             TouchManager.PushClickRect(new TouchRect(0, 0, 1536, 2048, closeBox));
 
-            IImage logoImage = AssetManager.GetImage(Images.Layouts.PenguinLogo);
-            IImage shuffleImage = AssetManager.GetImage(Images.Layouts.ShuffleLogo);
+            IImage logoImage = Assets.Images.Layouts.PenguinLogo;
+            IImage shuffleImage = Assets.Images.Layouts.ShuffleLogo;
 
             PenguinLogoAnimation = MotionManager.StartMotion(-1000, Positions.PenguinLogoLocation.Y)
                 .Motion(new WaitMotion(300))
@@ -191,14 +191,14 @@ namespace PenguinShuffle.LandingArea
             PlayButtonAnimation = MotionManager.StartMotion(-1000, Positions.StartLocation.Y)
                 .Motion(new WaitMotion(300))
                 .Motion(new AnimationMotion(Positions.StartLocation, 700, AnimationEasing.SineEaseIn))
-                .OnRender((layer, posX, posY, animationIndex, percentDone) => mainLayer.DrawImage(AssetManager.GetImage(Images.Layouts.PlayButton), posX, posY, true))
+                .OnRender((layer, posX, posY, animationIndex, percentDone) => mainLayer.DrawImage(Assets.Images.Layouts.PlayButton, posX, posY, true))
                 .OnComplete(() => { });
 
 
             State.AboutState = AboutState.Closed;
 
 
-            IImage penguinImage = AssetManager.GetImage(Images.About.Penguin);
+            IImage penguinImage = Assets.Images.About.MainPenguin;
             AboutOpenDialogAnimation = MotionManager.StartMotion(0, 0)
                 .Motion(new AnimationMotion(0, 100, 600, AnimationEasing.Linear))
                 .OnRender((layer, posX, posY, animationIndex, percentDone) =>
@@ -280,9 +280,9 @@ namespace PenguinShuffle.LandingArea
             layer.Save();
             layer.Translate(Positions.AboutBubblePosition);
 
-            layer.DrawImage(AssetManager.GetImage(Images.About.Bubble));
-            layer.DrawImage(AssetManager.GetImage(Images.About.Contact), Positions.AboutContactUsPosition);
-            layer.DrawImage(AssetManager.GetImage(Images.About.Rate), Positions.AboutRatePosition);
+            layer.DrawImage(Assets.Images.About.AboutBubble);
+            layer.DrawImage(Assets.Images.About.AboutContact, Positions.AboutContactUsPosition);
+            layer.DrawImage(Assets.Images.About.AboutRate, Positions.AboutRatePosition);
 
             layer.Restore();
         }
@@ -292,7 +292,7 @@ namespace PenguinShuffle.LandingArea
             if (State.AboutState != AboutState.Opened) return true;
             if (eventtype == TouchType.TouchDown)
             {
-                game.Client.PlaySoundEffect(SoundEffects.Click);
+                game.Client.PlaySoundEffect(Assets.Sounds.Click);
                 game.Client.ClientSettings.SendEmail(BoardConstants.EmailAddress, BoardConstants.EmailSubject, BoardConstants.EmailMessage);
                 return false;
             }
@@ -304,7 +304,7 @@ namespace PenguinShuffle.LandingArea
             if (State.AboutState != AboutState.Opened) return true;
             if (eventtype == TouchType.TouchDown)
             {
-                game.Client.PlaySoundEffect(SoundEffects.Click);
+                game.Client.PlaySoundEffect(Assets.Sounds.Click);
                 game.Client.ClientSettings.OpenAppStore();
                 return false;
             }
@@ -375,14 +375,14 @@ namespace PenguinShuffle.LandingArea
             {
                 if (State.AboutState == AboutState.Opened)
                 {
-                    game.Client.PlaySoundEffect(SoundEffects.Click);
+                    game.Client.PlaySoundEffect(Assets.Sounds.Click);
                     State.AboutState = AboutState.Closing;
                     AboutCloseAnimation.Restart();
                     AboutCloseDialogAnimation.Restart();
                 }
                 else if (State.AboutState == AboutState.Closed)
                 {
-                    game.Client.PlaySoundEffect(SoundEffects.Click);
+                    game.Client.PlaySoundEffect(Assets.Sounds.Click);
                     State.AboutState = AboutState.Opening;
                     AboutOpenAnimation.Restart();
                     AboutOpenDialogAnimation.Restart();
@@ -411,7 +411,7 @@ namespace PenguinShuffle.LandingArea
                     }
                     else
                     {
-                        mainLayer.DrawImage(AssetManager.GetImage(Images.About.Penguin), Positions.AboutPenguinPosition, true);
+                        mainLayer.DrawImage(Assets.Images.About.MainPenguin, Positions.AboutPenguinPosition, true);
                     }
 
                     break;
@@ -420,7 +420,7 @@ namespace PenguinShuffle.LandingArea
                     AboutOpenDialogAnimation.Render(mainLayer);
                     break;
                 case AboutState.Opened:
-                    mainLayer.DrawImage(AssetManager.GetImage(Images.About.Penguin), Positions.AboutOpenPenguinPosition, true);
+                    mainLayer.DrawImage(Assets.Images.About.MainPenguin, Positions.AboutOpenPenguinPosition, true);
                     aboutBoxRender(mainLayer);
                     break;
                 case AboutState.Closing:
@@ -437,10 +437,10 @@ namespace PenguinShuffle.LandingArea
         {
             if (eventtype == TouchType.TouchDown)
             {
-                if (State.ShowingTutorial>0)
+                if (State.ShowingTutorial > 0)
                 {
                     State.ShowingTutorial++;
-                    game.Client.PlaySoundEffect(SoundEffects.Click);
+                    game.Client.PlaySoundEffect(Assets.Sounds.Click);
 
                     if (State.ShowingTutorial > 2)
                     {
@@ -450,7 +450,7 @@ namespace PenguinShuffle.LandingArea
                 }
                 if (State.AboutState == AboutState.Opened)
                 {
-                    game.Client.PlaySoundEffect(SoundEffects.Click);
+                    game.Client.PlaySoundEffect(Assets.Sounds.Click);
                     State.AboutState = AboutState.Closing;
                     AboutCloseAnimation.Restart();
                     AboutCloseDialogAnimation.Restart();
@@ -467,7 +467,7 @@ namespace PenguinShuffle.LandingArea
             if (eventtype == TouchType.TouchDown)
             {
                 if (State.StartClicked || !PlayButtonAnimation.Completed) return false;
-                game.Client.PlaySoundEffect(SoundEffects.Click);
+                game.Client.PlaySoundEffect(Assets.Sounds.Click);
                 State.ShowingTutorial = 1;
                 return false;
             }
@@ -481,11 +481,11 @@ namespace PenguinShuffle.LandingArea
             {
                 case TouchType.TouchDown:
                     if (State.StartClicked) return false;
-                    game.Client.PlaySoundEffect(SoundEffects.Click);
+                    game.Client.PlaySoundEffect(Assets.Sounds.Click);
                     State.StartClicked = true;
 
-                    IImage logoImage = AssetManager.GetImage(Images.Layouts.PenguinLogo);
-                    IImage shuffleImage = AssetManager.GetImage(Images.Layouts.ShuffleLogo);
+                    IImage logoImage = Assets.Images.Layouts.PenguinLogo;
+                    IImage shuffleImage = Assets.Images.Layouts.ShuffleLogo;
 
                     PenguinLogoAnimation = MotionManager.StartMotion(Positions.PenguinLogoLocation)
                         .Motion(new AnimationMotion(Layout.Width + 1000, Positions.PenguinLogoLocation.Y, 1000, AnimationEasing.SineEaseIn))

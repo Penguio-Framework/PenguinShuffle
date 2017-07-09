@@ -22,27 +22,27 @@ namespace PenguinShuffle.BoardArea
             {
                 SolidWallImages = new Dictionary<int, IImage>();
 
-                SolidWallImages.Add((int) (Direction.Left | Direction.Top | Direction.Bottom | Direction.Right), assetManager.GetImage(Images.Tiles.WallSolid));
+                SolidWallImages.Add((int) (Direction.Left | Direction.Top | Direction.Bottom | Direction.Right), assetManager.GetImage(Assets.Images.Tiles.WallSolid));
 
-                SolidWallImages.Add((int) (Direction.Left), assetManager.GetImage(Images.Tiles.WallSolidSides, (int) (Direction.Left)));
-                SolidWallImages.Add((int) (Direction.Top), assetManager.GetImage(Images.Tiles.WallSolidSides, (int) (Direction.Top)));
-                SolidWallImages.Add((int) (Direction.Bottom), assetManager.GetImage(Images.Tiles.WallSolidSides, (int) (Direction.Bottom)));
-                SolidWallImages.Add((int) (Direction.Right), assetManager.GetImage(Images.Tiles.WallSolidSides, (int) (Direction.Right)));
+                SolidWallImages.Add((int) (Direction.Left), assetManager.GetImage(Assets.Images.Tiles.WallSolidSides, (int) (Direction.Left)));
+                SolidWallImages.Add((int) (Direction.Top), assetManager.GetImage(Assets.Images.Tiles.WallSolidSides, (int) (Direction.Top)));
+                SolidWallImages.Add((int) (Direction.Bottom), assetManager.GetImage(Assets.Images.Tiles.WallSolidSides, (int) (Direction.Bottom)));
+                SolidWallImages.Add((int) (Direction.Right), assetManager.GetImage(Assets.Images.Tiles.WallSolidSides, (int) (Direction.Right)));
 
-                SolidWallImages.Add((int) (Direction.Left | Direction.Right), assetManager.GetImage(Images.Tiles.WallSolidSides, (int) (Direction.Left | Direction.Right)));
-                SolidWallImages.Add((int) (Direction.Left | Direction.Top), assetManager.GetImage(Images.Tiles.WallSolidSides, (int) (Direction.Left | Direction.Top)));
-                SolidWallImages.Add((int) (Direction.Left | Direction.Bottom), assetManager.GetImage(Images.Tiles.WallSolidSides, (int) (Direction.Left | Direction.Bottom)));
+                SolidWallImages.Add((int) (Direction.Left | Direction.Right), assetManager.GetImage(Assets.Images.Tiles.WallSolidSides, (int) (Direction.Left | Direction.Right)));
+                SolidWallImages.Add((int) (Direction.Left | Direction.Top), assetManager.GetImage(Assets.Images.Tiles.WallSolidSides, (int) (Direction.Left | Direction.Top)));
+                SolidWallImages.Add((int) (Direction.Left | Direction.Bottom), assetManager.GetImage(Assets.Images.Tiles.WallSolidSides, (int) (Direction.Left | Direction.Bottom)));
 
-                SolidWallImages.Add((int) (Direction.Top | Direction.Bottom), assetManager.GetImage(Images.Tiles.WallSolidSides, (int) (Direction.Top | Direction.Bottom)));
-                SolidWallImages.Add((int) (Direction.Top | Direction.Right), assetManager.GetImage(Images.Tiles.WallSolidSides, (int) (Direction.Top | Direction.Right)));
+                SolidWallImages.Add((int) (Direction.Top | Direction.Bottom), assetManager.GetImage(Assets.Images.Tiles.WallSolidSides, (int) (Direction.Top | Direction.Bottom)));
+                SolidWallImages.Add((int) (Direction.Top | Direction.Right), assetManager.GetImage(Assets.Images.Tiles.WallSolidSides, (int) (Direction.Top | Direction.Right)));
 
-                SolidWallImages.Add((int) (Direction.Right | Direction.Bottom), assetManager.GetImage(Images.Tiles.WallSolidSides, (int) (Direction.Right | Direction.Bottom)));
+                SolidWallImages.Add((int) (Direction.Right | Direction.Bottom), assetManager.GetImage(Assets.Images.Tiles.WallSolidSides, (int) (Direction.Right | Direction.Bottom)));
 
-                SolidWallImages.Add((int) (Direction.Left | Direction.Right | Direction.Bottom), assetManager.GetImage(Images.Tiles.WallSolidSides, (int) (Direction.Left | Direction.Right | Direction.Bottom)));
-                SolidWallImages.Add((int) (Direction.Left | Direction.Right | Direction.Top), assetManager.GetImage(Images.Tiles.WallSolidSides, (int) (Direction.Left | Direction.Right | Direction.Top)));
+                SolidWallImages.Add((int) (Direction.Left | Direction.Right | Direction.Bottom), assetManager.GetImage(Assets.Images.Tiles.WallSolidSides, (int) (Direction.Left | Direction.Right | Direction.Bottom)));
+                SolidWallImages.Add((int) (Direction.Left | Direction.Right | Direction.Top), assetManager.GetImage(Assets.Images.Tiles.WallSolidSides, (int) (Direction.Left | Direction.Right | Direction.Top)));
 
-                SolidWallImages.Add((int) (Direction.Top | Direction.Bottom | Direction.Left), assetManager.GetImage(Images.Tiles.WallSolidSides, (int) (Direction.Top | Direction.Bottom | Direction.Left)));
-                SolidWallImages.Add((int) (Direction.Top | Direction.Bottom | Direction.Right), assetManager.GetImage(Images.Tiles.WallSolidSides, (int) (Direction.Top | Direction.Bottom | Direction.Right)));
+                SolidWallImages.Add((int) (Direction.Top | Direction.Bottom | Direction.Left), assetManager.GetImage(Assets.Images.Tiles.WallSolidSides, (int) (Direction.Top | Direction.Bottom | Direction.Left)));
+                SolidWallImages.Add((int) (Direction.Top | Direction.Bottom | Direction.Right), assetManager.GetImage(Assets.Images.Tiles.WallSolidSides, (int) (Direction.Top | Direction.Bottom | Direction.Right)));
             }*/
         }
 
@@ -80,7 +80,7 @@ namespace PenguinShuffle.BoardArea
                 : 0;
 
 //            IImage image = SolidWallImages[val == 0 ? 15 : val];
-            IImage image = assetManager.GetImage(Images.Tiles.WallSolid);
+            IImage image = Assets.Images.Tiles.WallSolid;
 
             layer.DrawImage(image, Position.X*BoardConstants.SquareSize + BoardConstants.SquareSize/2d,
                 Position.Y*BoardConstants.SquareSize + BoardConstants.SquareSize/2d,

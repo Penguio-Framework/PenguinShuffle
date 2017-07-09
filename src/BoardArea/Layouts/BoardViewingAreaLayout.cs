@@ -120,7 +120,7 @@ namespace PenguinShuffle.BoardArea.Layouts
                 switch (eventtype)
                 {
                     case TouchType.TouchDown:
-                        Game.Client.PlaySoundEffect(SoundEffects.Click);
+                        Game.Client.PlaySoundEffect(Assets.Sounds.Click);
                         ScreenTransitioner.ChangeToLanding();
                         break;
                 }
@@ -136,11 +136,11 @@ namespace PenguinShuffle.BoardArea.Layouts
                 switch (eventtype)
                 {
                     case TouchType.TouchDown:
-                        Game.Client.PlaySoundEffect(SoundEffects.Click);
+                        Game.Client.PlaySoundEffect(Assets.Sounds.Click);
                         State.BackDialogVisible = false;
                         if (GameService.ClassicGameState.GameState == GameSelectionState.TimerStarted)
                         {
-                            State.CurrentTick = Game.Client.PlaySoundEffect(SoundEffects.TimeTick, true);
+                            State.CurrentTick = Game.Client.PlaySoundEffect(Assets.Sounds.TimeTick, true);
                         }
                         break;
                 }
@@ -156,7 +156,7 @@ namespace PenguinShuffle.BoardArea.Layouts
             {
                 if (State.CurrentTick != null) State.CurrentTick.Stop();
 
-                Game.Client.PlaySoundEffect(SoundEffects.Click);
+                Game.Client.PlaySoundEffect(Assets.Sounds.Click);
                 State.BackDialogVisible = true;
             }
             return false;
@@ -175,18 +175,18 @@ namespace PenguinShuffle.BoardArea.Layouts
 
             MainLayer.Translate(nsBoard.X, nsBoard.Y);
 
-            MainLayer.DrawString(Renderer.GetFont(Fonts.BabyDoll._72), "Are you sure you would like\nto go back?\nYour progress will be lost.", Positions.BackLayout.BackTextPosition.X, Positions.BackLayout.BackTextPosition.Y, Images.Layouts.DarkFontColor);
+            MainLayer.DrawString((Assets.Fonts.BabyDoll._72), "Are you sure you would like\nto go back?\nYour progress will be lost.", Positions.BackLayout.BackTextPosition.X, Positions.BackLayout.BackTextPosition.Y, Colors.DarkFontColor);
 
 
             var cancelButtonRect = new Rectangle(Positions.BackLayout.BackCancelButtonPosition.X, Positions.BackLayout.BackCancelButtonPosition.Y, Positions.BackLayout.BackCancelBoxSize.X, Positions.BackLayout.BackCancelBoxSize.Y);
             MainLayer.DrawRectangle(buttonBlue, cancelButtonRect);
-            MainLayer.DrawString(Renderer.GetFont(Fonts.BabyDoll._100), "Cancel", cancelButtonRect.Center.X, cancelButtonRect.Center.Y);
+            MainLayer.DrawString((Assets.Fonts.BabyDoll._100), "Cancel", cancelButtonRect.Center.X, cancelButtonRect.Center.Y);
 
 
             var continueButtonRect = new Rectangle(Positions.BackLayout.BackContinueButtonPosition.X, Positions.BackLayout.BackContinueButtonPosition.Y, Positions.BackLayout.BackContinueBoxSize.X, Positions.BackLayout.BackContinueBoxSize.Y);
             MainLayer.DrawRectangle(buttonBlue, continueButtonRect);
 
-            MainLayer.DrawString(Renderer.GetFont(Fonts.BabyDoll._100), "Continue", continueButtonRect.Center.X, continueButtonRect.Center.Y);
+            MainLayer.DrawString((Assets.Fonts.BabyDoll._100), "Continue", continueButtonRect.Center.X, continueButtonRect.Center.Y);
 
             MainLayer.Restore();
         }
@@ -227,7 +227,7 @@ namespace PenguinShuffle.BoardArea.Layouts
                 case TouchType.TouchDown:
                     if (State.BackDialogVisible)
                     {
-                        Game.Client.PlaySoundEffect(SoundEffects.Click);
+                        Game.Client.PlaySoundEffect(Assets.Sounds.Click);
                         State.BackDialogVisible = false;
                         return true;
                     }
@@ -247,7 +247,7 @@ namespace PenguinShuffle.BoardArea.Layouts
             {
                 case TouchType.TouchUp:
                     if (!collide) return false;
-                    Game.Client.PlaySoundEffect(SoundEffects.Click);
+                    Game.Client.PlaySoundEffect(Assets.Sounds.Click);
 
                     if (closeNumberSelect())
                     {
@@ -292,7 +292,7 @@ namespace PenguinShuffle.BoardArea.Layouts
                 else
                 {
                     GameService.ClassicGameState.GameState = GameSelectionState.TimerStarted;
-                    State.CurrentTick = Game.Client.PlaySoundEffect(SoundEffects.TimeTick, true);
+                    State.CurrentTick = Game.Client.PlaySoundEffect(Assets.Sounds.TimeTick, true);
                 }
                 return true;
             }
@@ -312,7 +312,7 @@ namespace PenguinShuffle.BoardArea.Layouts
                         State.NSDragMouseDownPosition = null;
                         break;
                     case TouchType.TouchDown:
-                        Game.Client.PlaySoundEffect(SoundEffects.Click);
+                        Game.Client.PlaySoundEffect(Assets.Sounds.Click);
                         State.SwipeDistance = 0;
                         State.NSDragMouseDownPosition = new Point(x, y);
                         State.NSDragMouseDownStartingNumber = State.CurrentNumber;
@@ -339,7 +339,7 @@ namespace PenguinShuffle.BoardArea.Layouts
                 switch (eventtype)
                 {
                     case TouchType.TouchDown:
-                        Game.Client.PlaySoundEffect(SoundEffects.Click);
+                        Game.Client.PlaySoundEffect(Assets.Sounds.Click);
                         if (GameService.ClassicGameState.TimeStarted == 0)
                         {
                             GameService.ClassicGameState.TimeStarted = DateTime.Now.Ticks;
@@ -350,7 +350,7 @@ namespace PenguinShuffle.BoardArea.Layouts
                         }
 
                         GameService.ClassicGameState.GameState = GameSelectionState.TimerStarted;
-                        State.CurrentTick = Game.Client.PlaySoundEffect(SoundEffects.TimeTick, true);
+                        State.CurrentTick = Game.Client.PlaySoundEffect(Assets.Sounds.TimeTick, true);
                         State.TotalChosens++;
                         State.CurrentCharacter.Selected = false;
                         foreach (ChosenNumber chosenNumber in GameService.ClassicGameState.ChosenNumbers)
@@ -413,14 +413,14 @@ namespace PenguinShuffle.BoardArea.Layouts
 
             MainLayer.Translate(0, BoardConstants.TopAreaHeight);
 
-            MainLayer.DrawImage(AssetManager.GetImage(Images.Layouts.StagingArea), 0, 0);
+            MainLayer.DrawImage(Assets.Images.Layouts.StagingArea, 0, 0);
 
             drawBottomInfo();
 
             drawBottomChoosePlayers();
             MainLayer.Restore();
 
-            MainLayer.DrawImage(AssetManager.GetImage(Images.Layouts.BackButton), Positions.BackPosition);
+            MainLayer.DrawImage(Assets.Images.Layouts.BackButton, Positions.BackPosition);
 
 
             if (State.BackDialogVisible)
@@ -449,9 +449,9 @@ namespace PenguinShuffle.BoardArea.Layouts
             var selectButtonRect = new Rectangle(Positions.NumberSelectionSelectButtonPosition.X, Positions.NumberSelectionSelectButtonPosition.Y, Positions.NumberSelectionSelectBoxSize.X, Positions.NumberSelectionSelectBoxSize.Y);
             MainLayer.DrawRectangle(buttonBlue, selectButtonRect);
 
-            MainLayer.DrawString(Renderer.GetFont(Fonts.BabyDoll._100), "Select", selectButtonRect.Center.X, selectButtonRect.Center.Y);
+            MainLayer.DrawString((Assets.Fonts.BabyDoll._100), "Select", selectButtonRect.Center.X, selectButtonRect.Center.Y);
 
-            IImage barImage = AssetManager.GetImage(Images.Layouts.NumberSelectionBar);
+            IImage barImage = Assets.Images.Layouts.NumberSelectBar;
             MainLayer.DrawImage(barImage, Positions.TopBarPosition, true);
 
             MainLayer.DrawImage(barImage, Positions.BottomBarPosition, true);
@@ -483,7 +483,7 @@ namespace PenguinShuffle.BoardArea.Layouts
                         numberPosition = Positions.NSForthShadowPosition.Center;
                         break;
                 }
-                MainLayer.DrawString(Renderer.GetFont(Fonts.MyriadPro._100), i.ToString(), numberPosition, color);
+                MainLayer.DrawString((Assets.Fonts.MyriadPro._100), i.ToString(), numberPosition, color);
             }
             MainLayer.Restore();
 
@@ -494,11 +494,11 @@ namespace PenguinShuffle.BoardArea.Layouts
             IImage baseImage = GoalPiece.GetBaseImage(AssetManager, GameService.ClassicGameState.CurrentGoal);
             IImage goalImage = GoalPiece.GetGoalImage(AssetManager, GameService.ClassicGameState.CurrentGoal);
 
-            IImage goalArrow = AssetManager.GetImage(Images.Layouts.Arrow);
-            IImage smallGoalArrow = AssetManager.GetImage(Images.Layouts.Arrow);
+            IImage goalArrow = Assets.Images.Layouts.Arrow;
+            IImage smallGoalArrow = Assets.Images.Layouts.Arrow;
             if ((GameService.ClassicGameState.GameState == GameSelectionState.ChooseNumber && GameService.ClassicGameState.ChosenNumbers.Count == 0) || GameService.ClassicGameState.GameState == GameSelectionState.SearchingBoard)
             {
-                MainLayer.DrawImage(AssetManager.GetImage(Images.Layouts.HelperImage1), Positions.Help1Position, true);
+                MainLayer.DrawImage(Assets.Images.Layouts.HelperImage1, Positions.Help1Position, true);
 
                 MainLayer.DrawImage(goalArrow, Positions.CardArrowPosition.X, Positions.CardArrowPosition.Y, true);
 
@@ -506,7 +506,7 @@ namespace PenguinShuffle.BoardArea.Layouts
 
                 MainLayer.DrawImage(goalImage, Positions.CardGoalPosition.X, Positions.CardGoalPosition.Y, 192, 192, true);
 
-                MainLayer.DrawImage(AssetManager.GetImage(Images.Layouts.HelperImage2), Positions.Help2Position, true);
+                MainLayer.DrawImage(Assets.Images.Layouts.HelperImage2, Positions.Help2Position, true);
             }
             else
             {
@@ -516,24 +516,24 @@ namespace PenguinShuffle.BoardArea.Layouts
                     ChosenNumber chosenNumber = GameService.ClassicGameState.ChosenNumbers[chosenNumberIndex];
                     if (chosenNumberIndex == GameService.ClassicGameState.ChosenNumbers.Count - 1)
                     {
-                        IImage flagImage = AssetManager.GetImage(Images.Characters.BannersBig, chosenNumber.Character.CharacterNumber + 1);
+                        IImage flagImage = Assets.Images.Character.Banners.Big.LongBanner[chosenNumber.Character.CharacterNumber + 1];
                         MainLayer.DrawImage(flagImage, Positions.FlagLongPositions[index].X, Positions.FlagLongPositions[index].Y, true);
 
-                        MainLayer.DrawString(Renderer.GetFont(Fonts.BabyDoll._90), chosenNumber.Number.ToString(), Positions.FlagLongPositionNumbers[index].X, Positions.FlagLongPositionNumbers[index].Y);
+                        MainLayer.DrawString((Assets.Fonts.BabyDoll._90), chosenNumber.Number.ToString(), Positions.FlagLongPositionNumbers[index].X, Positions.FlagLongPositionNumbers[index].Y);
                     }
                     else
                     {
-                        IImage flagImage = AssetManager.GetImage(Images.Characters.BannersSmall, chosenNumber.Character.CharacterNumber + 1);
+                        IImage flagImage = Assets.Images.Character.Banners.Small.ShortBanner[chosenNumber.Character.CharacterNumber + 1];
                         MainLayer.DrawImage(flagImage, Positions.FlagPositions[index].X, Positions.FlagPositions[index].Y, true);
 
-                        MainLayer.DrawString(Renderer.GetFont(Fonts.BabyDoll._90), chosenNumber.Number.ToString(), Positions.FlagPositionNumbers[index].X, Positions.FlagPositionNumbers[index].Y);
+                        MainLayer.DrawString((Assets.Fonts.BabyDoll._90), chosenNumber.Number.ToString(), Positions.FlagPositionNumbers[index].X, Positions.FlagPositionNumbers[index].Y);
                     }
                     if (GameService.ClassicGameState.GameState != GameSelectionState.ChooseNumber)
                     {
                         long timeLeft = Math.Max(GetTimeLeft(), 0);
 
-                        MainLayer.DrawString(Renderer.GetFont(Fonts.BabyDoll._240), timeLeft.ToString(), Positions.TimePosition.X, Positions.TimePosition.Y, Positions.BlackColor);
-                        MainLayer.DrawString(Renderer.GetFont(Fonts.BabyDoll._48), "time left", Positions.TimePosition.X, Positions.TimePosition.Y + 100, Positions.BlackColor);
+                        MainLayer.DrawString((Assets.Fonts.BabyDoll._240), timeLeft.ToString(), Positions.TimePosition.X, Positions.TimePosition.Y, Positions.BlackColor);
+                        MainLayer.DrawString((Assets.Fonts.BabyDoll._48), "time left", Positions.TimePosition.X, Positions.TimePosition.Y + 100, Positions.BlackColor);
                     }
                     index++;
                 }
@@ -560,7 +560,7 @@ namespace PenguinShuffle.BoardArea.Layouts
                     if (GetTimeLeft() == 0)
                     {
                         if (State.CurrentTick != null) State.CurrentTick.Stop();
-                        ISoundEffect sfx = Game.Client.PlaySoundEffect(SoundEffects.TimeTick);
+                        ISoundEffect sfx = Game.Client.PlaySoundEffect(Assets.Sounds.TimeTick);
                         Game.Client.Timeout(() =>
                         {
                             sfx.Stop();
@@ -614,12 +614,12 @@ namespace PenguinShuffle.BoardArea.Layouts
 
                 if (!character.Playing)
                 {
-                    MainLayer.DrawImage(AssetManager.GetImage(Images.Characters.Placement, realCharacterNumber), Positions.CharacterShadowPositions[character.CharacterNumber], true);
+                    MainLayer.DrawImage(Assets.Images.Character.Placement.CharacterPlacement[realCharacterNumber], Positions.CharacterShadowPositions[character.CharacterNumber], true);
                 }
 
                 else
                 {
-                    MainLayer.DrawImage(AssetManager.GetImage(Images.Characters.Shadow), Positions.CharacterShadowPositions[character.CharacterNumber], true);
+                    MainLayer.DrawImage(Assets.Images.Character.CharacterShadow, Positions.CharacterShadowPositions[character.CharacterNumber], true);
                     MainLayer.Save();
 
                     var animatedCharacterSubLayout = CharacterAnimations[realCharacterNumber];
@@ -640,8 +640,8 @@ namespace PenguinShuffle.BoardArea.Layouts
 
 
                     var characterScorePosition = Positions.CharacterScorePositions[character.CharacterNumber];
-                    MainLayer.DrawString(Renderer.GetFont(Fonts.BabyDoll._36), "x", characterScorePosition.X, characterScorePosition.Y + 13, Positions.DarkColor, false);
-                    MainLayer.DrawString(Renderer.GetFont(Fonts.BabyDoll._60), character.Score.ToString(), characterScorePosition.X + 25, characterScorePosition.Y, Positions.DarkColor, false);
+                    MainLayer.DrawString((Assets.Fonts.BabyDoll._36), "x", characterScorePosition.X, characterScorePosition.Y + 13, Positions.DarkColor, false);
+                    MainLayer.DrawString((Assets.Fonts.BabyDoll._60), character.Score.ToString(), characterScorePosition.X + 25, characterScorePosition.Y, Positions.DarkColor, false);
                 }
             }
             MainLayer.Restore();

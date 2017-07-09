@@ -90,7 +90,8 @@ namespace PenguinShuffle.BoardArea.Layouts
                         }
                     }
                     Character ch = winningChars.First();
-                    MainLayer.DrawImage(AssetManager.GetImage(Images.Characters.LabelBox, ch.CharacterNumber + 1), Positions.CongratsPosition, true);
+                    
+                    MainLayer.DrawImage(Assets.Images.Character.LabelBox.CharacterBox[ch.CharacterNumber + 1], Positions.CongratsPosition, true);
 
                     string charWinningString;
                     if (winningChars.Count == 1)
@@ -110,15 +111,15 @@ namespace PenguinShuffle.BoardArea.Layouts
 
                         charWinningString = string.Format("Players {0}\nHave Won!", plc);
                     }
-                    MainLayer.DrawString(Renderer.GetFont(Fonts.BabyDoll._130), charWinningString, Positions.CongratsPosition);
+                    MainLayer.DrawString((Assets.Fonts.BabyDoll._130), charWinningString, Positions.CongratsPosition);
                 }
                 else
                 {
 
                     if (State.CardAnimationMotion == null)
                     {
-                        MainLayer.DrawImage(AssetManager.GetImage(Images.Layouts.TextBoard), Positions.SelectACardPosition, true);
-                        MainLayer.DrawString(Renderer.GetFont(Fonts.BabyDoll._72), "Please Select A Card", Positions.SelectACardPosition);
+                        MainLayer.DrawImage(Assets.Images.Layouts.TextBoard, Positions.SelectACardPosition, true);
+                        MainLayer.DrawString((Assets.Fonts.BabyDoll._72), "Please Select A Card", Positions.SelectACardPosition);
                     }
 
                     MainLayer.Translate(0, BoardConstants.TopAreaHeight);
@@ -151,7 +152,7 @@ namespace PenguinShuffle.BoardArea.Layouts
                     {
                         Game.Client.UserPreferences.AddOrUpdateValue("GamesCompleted", gamesCompleted);
                         Game.Client.ClientSettings.RateApp();
-                        Game.Client.PlaySoundEffect(SoundEffects.Click);
+                        Game.Client.PlaySoundEffect(Assets.Sounds.Click);
                         ScreenTransitioner.ChangeToLanding();
                     }
                     return false;
@@ -198,7 +199,7 @@ namespace PenguinShuffle.BoardArea.Layouts
             {
                 if (State.CardAnimationMotion != null) return false;
 
-                Game.Client.PlaySoundEffect(SoundEffects.Click);
+                Game.Client.PlaySoundEffect(Assets.Sounds.Click);
                 var gc = (Goal)touchbox.State;
                 IImage goalImage = GoalPiece.GetGoalImage(AssetManager, gc);
 
@@ -261,7 +262,7 @@ namespace PenguinShuffle.BoardArea.Layouts
         {
             MainLayer.Save();
 
-            IImage image = AssetManager.GetImage(Images.Cards.Back);
+            IImage image = Assets.Images.Cards.CardsBack;
 
 
             Goal[] goalCards = GameService.ClassicGameState.UnusedGoals;

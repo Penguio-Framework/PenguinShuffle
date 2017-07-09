@@ -1,0 +1,52 @@
+{
+    "fonts": [
+        {
+            "fontName": "BabyDoll",
+            "fontSize": 36,
+            "characters": "x"
+        },
+        {
+            "fontName": "BabyDoll",
+            "fontSize": 48,
+            "characters": "time left total moves"
+        },
+        {
+            "fontName": "BabyDoll",
+            "fontSize": 60,
+            "characters": "$NUMBERS$"
+        },
+        {
+            "fontName": "BabyDoll",
+            "fontSize": 72
+        },
+        {
+            "fontName": "BabyDoll",
+            "fontSize": 90,
+            "characters": "$NUMBERS$"
+        },
+        {
+            "fontName": "BabyDoll",
+            "fontSize": 100,
+            "characters": "$LETTERS$"
+        },
+        {
+            "fontName": "BabyDoll",
+            "fontSize": 120,
+            "characters": "$NUMBERS-LETTERS$"
+        },
+        {
+            "fontName": "BabyDoll",
+            "fontSize": 130
+        },
+        {
+            "fontName": "BabyDoll",
+            "fontSize": 240,
+            "characters": "$NUMBERS$"
+        },
+        {
+            "fontName": "Myriad Pro",
+            "fontSize": 100,
+            "characters": "$NUMBERS$"
+        }
+    ]
+}
